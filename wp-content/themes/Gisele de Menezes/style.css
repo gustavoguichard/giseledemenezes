@@ -1,0 +1,14 @@
+/*
+Theme Name: Gisele de Menezes
+Theme URI: http://www.giseledemenezes.com
+Description: The Gisele de Menezes (Therapist) theme. Based on Starkers
+Version: 3.0
+Author: Gustavo Guichard
+Author URI: http://gustavoguichard.com
+Tags: gisele, clean
+*/
+
+@import "css/reset.css";
+@import "css/layout.css";
+@import "css/jquery.lightbox-0.5.css";
+@import "css/style.css";

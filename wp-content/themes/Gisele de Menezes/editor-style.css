@@ -1,0 +1,285 @@
+/*
+Theme Name: Starkers
+*/
+/*
+Used to style the TinyMCE editor.
+*/
+html .mceContentBody {
+	max-width:640px;
+}
+* {
+	font: 14px/21px "Myriad Pro", Helvetica, Arial, sans-serif;
+	color: #333;
+	line-height: 1.5;
+}
+pre {
+	font-family: "Courier 10 Pitch", Courier, monospace;
+}
+body, input, textarea {
+	font-size: 12px;
+	line-height: 18px;
+}
+hr {
+	background: @gray + #111;
+	height: 1px;
+	border: none;
+	border-bottom: 1px solid #dadada;
+	margin: 15px 10px;
+	clear: both;
+}
+/* Text elements */
+p {
+	text-align: justify;
+	margin: 16px 0;
+}
+ul{
+	width: 100%;
+	margin: 7px;
+}	
+li{		
+	list-style: square;
+	list-style-position: inside;
+	margin: 3px 0;
+}
+ol {
+	list-style: decimal;
+	margin: 0 0 18px 1.5em;
+}
+ol ol {
+	list-style:upper-alpha;
+}
+ol ol ol {
+	list-style:lower-roman;
+}
+ol ol ol ol {
+	list-style:lower-alpha;
+}
+ul ul,
+ol ol,
+ul ol,
+ol ul {
+	margin-bottom:0;
+}
+dl {
+	margin:0 0 24px 0;
+}
+dt {
+	font-weight: bold;
+}
+dd {
+	margin-bottom: 18px;
+}
+strong {
+	font-weight: bold;
+}
+cite,
+em,
+i {
+	font-style: italic;
+	border: none;
+}
+big {
+	font-size: 131.25%;
+}
+ins {
+	background: #FFFFCC;
+	border: none;
+	color: #333;
+}
+del {
+	text-decoration: line-through;
+	color: #555;
+}
+blockquote {
+	color: #747474;
+	font-style: italic;
+	overflow: visible;
+	border: @border;
+	display: block;
+	min-width: 60%;
+	border-left-width: 0;
+	border-right-width: 0;
+	margin: 10px;
+	font-size: 16px;
+	font-weight: lighter;
+}
+blockquote p {
+	padding: 2px 30px;
+}
+blockquote:before{
+	content: '“';
+	float: left;
+	margin: 0;
+	position: relative;
+	margin: 20px 0 -20px;
+}
+
+blockquote:after{
+	content: '”';
+	float: right;
+	position: relative;
+	margin-top: -20px;
+}
+blockquote:before, blockquote:after{
+	color: @gray;
+	font-size: 36px;
+	display: block;
+	font-weight: bold;
+}
+pre {
+	background: #f7f7f7;
+	color: #222;
+	line-height: 18px;
+	margin-bottom: 18px;
+	padding: 1.5em;
+}
+abbr,
+acronym {
+	border-bottom: 1px dotted #666;
+	cursor: help;
+}
+ins {
+	text-decoration: none;
+}
+sup,
+sub {
+	height: 0;
+	line-height: 1;
+	vertical-align: baseline;
+	position: relative;
+	font-size: 10px;
+}
+sup {
+	bottom: 1ex;
+}
+sub {
+	top: .5ex;
+}
+h1, h2, h3, h4{
+	color: #333;
+	letter-spacing: -1px;
+	font-weight: bold;
+	margin: 10px 0 17px;
+	text-shadow(0,2px,0,#fff);
+}
+h1 a, h2 a, h3 a, h4 a{
+	text-decoration: none;
+}
+h1, h2{
+	font-size: 30px;
+	margin: 5px 0 10px;
+	line-height: 30px;
+}
+
+h3{
+	font-size: 24px;
+	line-height: 24px;
+}
+
+h4{
+	font-size: 18px
+}
+a{
+	text-decoration: underline;
+	color: @red;
+}
+
+ol,
+dd,
+pre {
+	margin-bottom:24px;
+}
+ul ul,
+ol ol,
+ul ol,
+ol ul {
+	margin-bottom:0;
+}
+pre,
+kbd,
+tt,
+var {
+	font-size: 15px;
+	line-height: 21px;
+}
+code {
+	font-size: 13px;
+}
+
+table {
+	border: 1px solid #e7e7e7 !important;
+	text-align: left;
+	margin: 0 -1px 24px 0;
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+tr th,
+thead th {
+	border: none !important;
+	color: #888;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 18px;
+	padding: 9px 24px;
+}
+tr td {
+	border: none !important;
+	border-top: 1px solid #e7e7e7 !important;
+	padding: 6px 24px;
+}
+
+
+img{
+	padding: 4px;
+	border: 1px solid #dadada;
+	background-color: white;
+}
+.alignleft,
+img.alignleft {
+	display: inline;
+	float: left;
+	margin: 0 25px 8px 0;
+}
+.alignright,
+img.alignright {
+	display: inline;
+	float: right;
+	margin: 0 0 8px 25px;
+}
+.aligncenter,
+img.aligncenter {
+	clear: both;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+img.alignleft,
+img.alignright,
+img.aligncenter {
+	margin-bottom: 12px;
+}
+.wp-caption {
+	border: none;
+	background: #f1f1f1;
+	color: #888;
+	font-size: 12px;
+	line-height: 18px;
+	text-align: center;
+	margin-bottom: 20px;
+	padding: 4px;
+	-moz-border-radius: 0;
+	-khtml-border-radius: 0;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+}
+.wp-caption p.wp-caption-text {
+	text-align: center;
+	margin: 0;
+	padding: 1px;
+	background: white;
+	border: 1px solid #eee;
+}
+.wp-smiley {
+	margin:0;
+}

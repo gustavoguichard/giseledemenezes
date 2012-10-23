@@ -1,0 +1,28 @@
+{
+	// don't forget about commas
+
+	// your main connection
+	"default": {
+
+		// address
+		"host": "ftp.giseledemenezes.com",
+		//"port": 21
+
+		// credentials
+		"username": "giseledemenezes",
+		"password": "198613",
+
+		// path to the folder matching the folder in which this file resides
+		"path": "/www/wp-content/themes/Gisele%20de%20Menezes"
+
+		// true = secured connection
+		//"tls": false,
+
+		// how long until connection closes [seconds]
+		//"timeout": 30,
+
+		// regular expression, when matches the file path of the file-to-be-uploaded, it cancels its upload
+		//"ignore": ""
+
+	}
+}
