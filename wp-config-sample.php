@@ -69,7 +69,7 @@ $table_prefix  = 'wp_';
  * pt_PT.mo em wp-content/languages e defina WPLANG como 'pt_PT' para activar o
  * suporte para a língua portuguesa.
  */
-define ('WPLANG', 'pt_PT');
+define('WPLANG', 'pt_PT');
 
 /**
  * Para developers: WordPress em modo debugging.
@@ -80,7 +80,7 @@ define ('WPLANG', 'pt_PT');
  */
 define('WP_DEBUG', false);
 
-/* E é tudo. Pare de editar! Bom blogging!. */
+/* E é tudo. Pare de editar! */
 
 /** Caminho absoluto para a pasta do WordPress. */
 if ( !defined('ABSPATH') )
