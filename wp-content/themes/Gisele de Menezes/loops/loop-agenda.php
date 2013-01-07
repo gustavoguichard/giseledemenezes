@@ -13,8 +13,8 @@
 				<?php the_content(); ?>
 				<p><?php $localiza = get_post_meta($post->ID, 'localizacao', true); if($localiza != '') echo $localiza . '<br />';?>
 				<?php $informa = get_post_meta($post->ID, 'contatos', true); if($informa != '') echo '<strong>Informações: </strong>' . $informa;?></p>
-				
-				<p><?php $pagseguro = get_post_meta($post->ID, 'pagseguro_bt', true); if($pagseguro != '') echo $pagseguro;?></p>
+
+				<p><?php $pagseguro = get_post_meta($post->ID, 'pagseguro_bt', true); if($pagseguro != '') echo '<strong>Inscreva-se: </strong>' . $pagseguro;?></p>
 
 				<?php $curso_term = null; $curso_term = wp_get_post_terms($post->ID, 'cursos', 'name' );
 						$term = null; $term = wp_get_post_terms($post->ID, 'sessao', 'name' );
