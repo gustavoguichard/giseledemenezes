@@ -79,7 +79,8 @@ function twentyten_setup() {
 	add_theme_support( 'post-thumbnails' );
 	set_post_thumbnail_size( 220, 220, false );
 	add_image_size('mini_thumb', 60, 55, true);
-	add_image_size('med_thumb', 180, 180, true);
+    add_image_size('med_thumb', 180, 180, true);
+	add_image_size('email_thumb', 150, 150, false);
 
 
 	// Add default posts and comments RSS feed links to head
