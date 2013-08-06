@@ -390,7 +390,7 @@ function my_cpt_init()
     'capability_type' => 'post',
     'has_archive' => true, 
     'hierarchical' => false,
-    'supports' => array('title','editor', 'thumbnail')
+    'supports' => array('title','editor')
   );
 /* CURSOS */
   $labelsCurso = array(
