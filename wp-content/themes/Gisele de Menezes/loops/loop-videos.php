@@ -8,7 +8,8 @@
 		<div class="videos_galery grid_9 alpha">
 	<?php }; ?>
 	<div class="videos_item">
-		<a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('med_thumb'); ?></a>
+		<?php $video_code = get_post_meta($post->ID, 'youtube', true); ?>
+		<a href="<?php the_permalink(); ?>"><img src="http://img.youtube.com/vi/<?=$video_code?>/0.jpg" width="180"/></a>
 		<a href="<?php the_permalink(); ?>"><h4><?php the_title(); ?></h4></a>
 	</div>
 	<?php $i++; ?>
