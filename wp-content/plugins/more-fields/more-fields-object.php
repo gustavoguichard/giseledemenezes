@@ -1,7 +1,7 @@
 <?php
 
 
-class more_fields_object extends more_plugins_object_sputnik_7 {
+class more_fields_object extends more_plugins_object_sputnik_8 {
 
 	var $settings, $field_types;
 
@@ -113,10 +113,12 @@ class more_fields_object extends more_plugins_object_sputnik_7 {
 			if (!($box = apply_filters('mf_box', $box))) continue;
 
 			// Create the capability name
-			$slug = ($s = $box['slug']) ? $s : sanitize_title($box['label']);
+			$boxslug = (array_key_exists('slug', $box)) ? $box['slug'] : 0;
+			$slug = ($s = $boxslug) ? $s : sanitize_title($box['label']);
 			$capability = 'more_fields_box_' . $slug;
 
-			foreach ((array) $box['more_access_cap'] as $role) {
+			$bmac = (array_key_exists('more_access_cap', $box)) ? $box['more_access_cap'] : array();
+			foreach ((array) $bmac as $role) {
 				if (is_object($wp_roles))
 					$wp_roles->add_cap($role, $capability);
 			}	

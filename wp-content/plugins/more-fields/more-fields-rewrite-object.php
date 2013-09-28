@@ -35,7 +35,8 @@ class more_fields_rewrite_object {
 	function query_join( $join ) {
 		global $wpdb, $wp_query;
 		if (!is_callable(array($wp_query, 'get'))) return false; 
-		if ($key = $wp_query->get('mf_key') || $type = attribute_escape($_GET['type'])) {
+		$gettype = (array_key_exists('type', $_GET)) ? esc_attr($_GET['type']) : 0; 
+		if ($key = $wp_query->get('mf_key') || $type = $gettype) {
 			$join .= " LEFT JOIN $wpdb->postmeta as meta ON $wpdb->posts.ID = meta.post_id";
 		}
 		return $join;
@@ -63,7 +64,8 @@ class more_fields_rewrite_object {
 		else if ($key) $where .= " AND meta.meta_value=!''" . $catch;
 
 		// We want to be able to sort by panel type
-		if  (($type = attribute_escape($_GET['type'])) && is_admin()) {
+		$gettype = (array_key_exists('type', $_GET)) ? esc_attr($_GET['type']) : 0; 
+		if  (($type = $gettype) && is_admin()) {
 			$where .= " AND meta.meta_key='mf_page_type' AND meta.meta_value='$type'";			
 		 }
 		 //echo $where;

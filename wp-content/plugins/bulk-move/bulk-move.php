@@ -4,7 +4,7 @@ Plugin Name: Bulk Move
 Plugin Script: bulk-move.php
 Plugin URI: http://sudarmuthu.com/wordpress/bulk-move
 Description: Bulk move posts from selected categories or tags.
-Version: 0.4
+Version: 0.9
 Donate Link: http://sudarmuthu.com/if-you-wanna-thank-me
 License: GPL
 Author: Sudar
@@ -15,6 +15,12 @@ Author URI: http://sudarmuthu.com/
 2009-05-08 - v0.2 - first version
 2010-11-28 - v0.3 - Fixes for blank screen issue. Thanks Carlos
 2011-02-08 - v0.4 - Added Brazilian Portuguese translation
+2011-08-25 - v0.5 - Fixed a warning and added Turkish translation
+2011-11-19 - v0.6 - Added Spanish translation
+2011-12-16 - v0.7 - Removed spaces from first line which was starting the output 
+2012-01-13 - v0.8 - Added Bulgarian translations
+2012-07-10 - v0.6 - (Dev time: 0.5 hour)
+                  - Added Hindi translations
 
 /*  Copyright 2009  Sudar Muthu  (email : sudar@sudarmuthu.com)
 
@@ -216,7 +222,7 @@ function smbm_filter_plugin_actions($links, $file) {
     if( ! $this_plugin ) $this_plugin = plugin_basename(__FILE__);
 
     if( $file == $this_plugin ) {
-        $settings_link = '<a href="options-general.php?page=bulk-move.php">' . _('Manage', 'bulk-move') . '</a>';
+        $settings_link = '<a href="options-general.php?page=bulk-move.php">' . __('Manage', 'bulk-move') . '</a>';
         array_unshift( $links, $settings_link ); // before other links
     }
     return $links;

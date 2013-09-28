@@ -25,6 +25,7 @@ class ct_fields
 		add_filter( 'manage_'.$this->ct_type.'_custom_column', array($this,'taxonomy_columns_manage'),10,3);
         add_shortcode('xy_'.$this->ct_type, array($this,'xydac_shortcode'));
 	}
+	
     function taxonomy_columns($columns) {
         $columns[$this->ct_field_name] = __( $this->ct_field_label, 'xydac' );
         return $columns;
@@ -178,7 +179,7 @@ class ct_fields
                 <?php } ?>
             </select>
         <?php } elseif($this->ct_field_type == 'image') { ?>
-            <img src='<?php !empty($xy_meta) ? _e($xy_meta): _e(get_bloginfo('wpurl').'/wp-includes/images/blank.gif') ; ?>' id='<?php _e($this->ct_field_name) ?>'/>
+            <img class="xydac_cat" src='<?php !empty($xy_meta) ? _e($xy_meta): _e(get_bloginfo('wpurl').'/wp-includes/images/blank.gif') ; ?>' id='<?php _e($this->ct_field_name) ?>'/>
             <!--<input type="hidden" name="<?php _e($this->ct_field_name) ?>" value="<?php !empty($xy_meta) ? _e($xy_meta): _e('') ; ?>" />-->
 			<input type="text" name="<?php _e($this->ct_field_name) ?>" id="<?php _e($this->ct_field_name) ?>" value="<?php !empty($xy_meta) ? _e($xy_meta): _e('') ; ?>" size="40"/>
             <?php }  elseif($this->ct_field_type == 'textarea'){  ?>
@@ -203,7 +204,7 @@ class ct_fields
             <?php } elseif($this->ct_field_type == 'image') { ?>
                     <a href="" style="padding:4px;font-weight:normal;text-decoration:none;margin-left:20px" id="xydac_add_image_<?php _e($this->ct_field_name) ?>" name="<?php _e($this->ct_field_name) ?>"  title="Add an Image">
             <img src="images/media-button-image.gif" alt="Add an Image" style="padding-right:10px;">Add Image</a><a href="#" style="padding:4px;font-weight:normal;text-decoration:none;margin-left:20px" id="xydac_remove_image_<?php _e($this->ct_field_name) ?>" name="<?php _e($this->ct_field_name) ?>" title="Remove Image">Remove Image</a><br/>
-                   <img src='<?php !empty($xy_meta) ? _e($xy_meta): _e(get_bloginfo('wpurl').'/wp-includes/images/blank.gif') ; ?>' id='<?php _e($this->ct_field_name) ?>'/>
+                   <img class="xydac_cat" src='<?php !empty($xy_meta) ? _e($xy_meta): _e(get_bloginfo('wpurl').'/wp-includes/images/blank.gif') ; ?>' id='<?php _e($this->ct_field_name) ?>'/>
                     <!--<input type="hidden" name="<?php _e($this->ct_field_name) ?>" value="<?php !empty($xy_meta) ? _e($xy_meta): _e('') ; ?>" /> -->
 					<input type="text" name="<?php _e($this->ct_field_name) ?>" id="<?php _e($this->ct_field_name) ?>" value="<?php !empty($xy_meta) ? _e($xy_meta): _e('') ; ?>" size="40"/>
 			<?php } elseif($this->ct_field_type == 'textarea'){  ?>

@@ -1,10 +1,10 @@
 === Search Meter ===
 Contributors: bennettmcelwee
-Donate link: http://www.thunderguy.com/semicolon/wordpress/search-meter-wordpress-plugin/
-Tags: search, meter, search-meter, statistics, widget, admin
+Donate link: http://thunderguy.com/semicolon/donate/
+Tags: search, meter, search-meter, statistics, widget, admin, keywords
 Requires at least: 2.8
-Tested up to: 3.0
-Stable tag: 2.7.2
+Tested up to: 3.6
+Stable tag: 2.9.1
 
 Search Meter tracks what your readers are searching for on your blog. View full details of recent searches or stats for the last day, week or month.
 
@@ -18,7 +18,7 @@ Search Meter installs easily and requires no configuration. Just install it, act
 
 = View Statistics =
 
-To see your search statistics, Log in to WordPress Admin, go to the Dashboard section and click Search Meter. You'll see the most popular searches in the last day, week and month. Click "Last 100 Searches" or "Last 500 Searches" to see lists of all recent searches.
+To see your search statistics, Log in to WordPress Admin. On your dashboard you will see a Search Meter widget listing search statistics from the last seven days. For more details, go to the Dashboard menu on the left and click Search Meter. You'll see the most popular searches in the last day, week and month. Click "Last 100 Searches" or "Last 500 Searches" to see lists of all recent searches.
 
 = Manage Statistics =
 
@@ -30,7 +30,7 @@ Use the Reset Statistics button to clear all past search statistics; Search Mete
 
 You can find, download and install Search Meter directly from the **Plugins** section in WordPress.
 
-If you have an older version of WordPress, download and unzip the search-meter.zip file and upload to the `/wp-content/plugins/search-meter` directory. Then activate the plugin through the **Plugins** section in WordPress.
+If you want to install manually, download and unzip the search-meter.zip file and upload to the `/wp-content/plugins/search-meter` directory. Then activate the plugin through the **Plugins** section in WordPress.
 
 = Widgets: Popular and Recent Searches =
 
@@ -63,15 +63,34 @@ Show a simple list of the 5 most recent successful search terms, hyperlinked to 
 
 == Frequently Asked Questions ==
 
+= Why don't search terms with spaces work? =
+
+There is a [bug](http://core.trac.wordpress.org/ticket/13961) in the way WordPress handles spaces in pretty permalinks. The WordPress developers will fix this at some point. Until then, I have written a plugin called [Search Fixer](http://thunderguy.com/semicolon/2011/06/08/search-fixer-wordpress-plugin/) which should improve things.
+
 = Where can I find out more information? =
 
-The [Search Meter home page](http://www.thunderguy.com/semicolon/wordpress/search-meter-wordpress-plugin/) has more information and a form to submit comments and questions.
+The [Search Meter home page](http://thunderguy.com/semicolon/wordpress/search-meter-wordpress-plugin/) has more information and a form to submit comments and questions.
 
 == Screenshots ==
 
 1. The Search Meter administration interface, showing some of the reports available.
 
 == Changelog ==
+
+= 2.9.1 =
+* Ensure Search Meter can save searches even if other plugins trigger a query before the main WordPress loop.
+
+= 2.9 =
+* Add a Search Meter dashboard widget.
+* Add Search Meter settings link on the Plugins page for convenient configuration.
+* Many small improvements.
+
+= 2.8 =
+* Fix option for permission level, which was not being saved correctly.
+* Allow Search Meter to work with Multisite WordPress.
+* Add convenient links between Settings and Dashboard pages.
+* Clean up dashboard tabs and table layout.
+* Add Bitcoin donation address in case you're feeling generous.
 
 = 2.7.3 =
 * Remove another warning message.
@@ -82,44 +101,44 @@ The [Search Meter home page](http://www.thunderguy.com/semicolon/wordpress/searc
 * Remove notice messages when debugging.
 
 = 2.7 =
-* Don't show duplicated recent searches
-* Add filter list so that search terms with certain words will not show up in recent and popular search lists
-* Search links work whether or not fancy permalinks are enabled
-* Administrator can decide who is allowed to see full statistics
-* Requires WordPress 2.3 or later
+* Don't show duplicated recent searches.
+* Add filter list so that search terms with certain words will not show up in recent and popular search lists.
+* Search links work whether or not fancy permalinks are enabled.
+* Administrator can decide who is allowed to see full statistics.
+* Requires WordPress 2.3 or later.
 
 = 2.6 =
-* Use UTF8 when creating tables
-* Fix PHP 5.3 incompatibility
-* Widgets now conform to WordPress 2.8 standards
+* Use UTF8 when creating tables.
+* Fix PHP 5.3 incompatibility.
+* Widgets now conform to WordPress 2.8 standards.
 
 = 2.5 =
-* Improve formatting on the Options page
-* Fix database error caused by duplicate searches
+* Improve formatting on the Options page.
+* Fix database error caused by duplicate searches.
 * Users of Search Meter version 1 will need to deactivate and reactivate the plugin to use version 2.5.
 
 = 2.4 =
 * Fix the links to the Statistics and Options pages, which broke in WordPress 2.7.
 
 = 2.3 =
-* Improve widget display and add controls to specify the number of searches to show
-* Add option to hide donation buttons
+* Improve widget display and add controls to specify the number of searches to show.
+* Add option to hide donation buttons.
 
 = 2.2 =
-* Add widgets for Recent Searches and Popular Searches
-* Fix table creation problem on WordPress 2.2.1
-* Add donation buttons (thanks for your consideration)
+* Add widgets for Recent Searches and Popular Searches.
+* Fix table creation problem on WordPress 2.2.1.
+* Add donation buttons (thanks for your consideration).
 
 = 2.1 =
-* Improve search count accuracy
+* Improve search count accuracy.
 
 = 2.0 =
-* Add Recent Searches page and template tag
-* Make search counts more accurate: correctly count multi-page searches and searches with no referer [sic]
+* Add Recent Searches page and template tag.
+* Make search counts more accurate: correctly count multi-page searches and searches with no referer [sic].
 * Popular Searches tag allows number of results to be specified.
 
 = 1.1 =
-* Various improvements
+* Various improvements.
 
 = 1.0 =
-* Initial public release
+* Initial public release.

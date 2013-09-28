@@ -35,6 +35,7 @@ if (!$more_fields_settings->navigation || $more_fields_settings->navigation == '
 		$edit_link = array('navigation' => 'box', 'action' => 'edit', 'keys' => $keys);
 		$delete_link = array('action' => 'delete', 'action_keys' => $keys, 'class' => 'more-common-delete');
 		$export_link = array('navigation' => 'export', 'keys' => $keys);
+		$warning = '';
 		$data = array(	
 				$more_fields_settings->settings_link($label, $edit_link) . $warning,
 				count($item['fields']),
@@ -138,7 +139,7 @@ if (!$more_fields_settings->navigation || $more_fields_settings->navigation == '
 	?>
 	<table class="form-table">
 	<?php
-		$box = attribute_escape($_GET['keys']);
+		$box = esc_attr($_GET['keys']);
 	
 		$comment = __('This is the title that will appear at the head of the box.', 'more-plugins');
 		$comment = '<em>' . $comment . '</em>';
@@ -154,16 +155,17 @@ if (!$more_fields_settings->navigation || $more_fields_settings->navigation == '
 			foreach ($remove as $r) if ($types[$r]) unset($types[$r]);
 			
 			$options = array();
-			if (is_object($more_types)) {
+			if (is_object($more_types) && !empty($more_types)) {
 				$box_key = $this->keys[1];
-				$link = $more_types->options_url;
+				$link = (method_exists($more_types, 'options_url')) ? $more_types->options_url : '';
 				$mfts = $more_types->get_objects(array('_plugin_saved', '_other'));
 				$mftss = $more_types->get_objects(array('_plugin_saved', '_other', '_plugin'));
 				foreach ($mftss as $key => $mft) {
 					$options[$key] = array();
 	
 					// Override value?
-					if (in_array($box_key, (array) $mft['boxes'])) 
+					$mftb = (array_key_exists('boxes', $mft)) ? $mft['boxes'] : array();
+					if (in_array($box_key, (array) $mftb)) 
 						$options[$key] = array_merge($options[$key], array('value' => 'on'));
 
 					// If this is created by file or elsewhere there's nothing we can do. 
@@ -213,6 +215,7 @@ if ($more_fields_settings->action != 'add') {
 			$akeys = $keys[0] . ',' . $keys[1] . ',fields,' . $key;
 			$edit_link = array('navigation' => 'field', 'action' => 'edit', 'keys' => $akeys);
 			$delete_link = array('navigation' => 'box', 'action' => 'delete','keys' => $keys, 'class' => 'more-common-delete', 'action_keys' => $akeys);
+			$warning = '';
 			$row = array(	
 					$more_fields_settings->settings_link($label, $edit_link) . $warning,
 					$item['key'],

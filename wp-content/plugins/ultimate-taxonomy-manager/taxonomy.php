@@ -22,6 +22,7 @@ if ( !function_exists( 'get_reg_taxonomyName' ) ) { function get_reg_taxonomyNam
     $a=array();
         foreach ($taxonomies  as $taxonomy=>$e ) {array_push($a,$e->name);}
     $taxonomies = get_option("xydac_taxonomies");
+	if(is_array($taxonomies))
         foreach ($taxonomies  as $taxonomy ) {if(!in_array($taxonomy['name'],$a))  array_push($a,$taxonomy['name']);}
     return $a;
 }}
@@ -186,6 +187,7 @@ if ( !function_exists( 'col_left' ) ) { function col_left($xydac_edit=false){
 	'rewrite' => array( 'arr_label' => 'Rewrite ', 'name' => 'xy_tax[args][rewrite][val]', 'type'=>'boolean', 'desc'=>'Set to false to prevent rewrite, or array to customize customize query var. Default will use Taxonomy Name as query var', 'default'=>'true'),
 	'rewrite_slug' => array( 'arr_label' => 'Slug ', 'name' => 'xy_tax[args][rewrite][slug]', 'type'=>'string', 'desc'=>' prepend posts with this slug', 'default'=>'true'),
 	'rewrite_with_front' => array( 'arr_label' => 'With-Front ' , 'name' => 'xy_tax[args][rewrite][with_front]', 'type'=>'boolean', 'desc'=>'allowing permalinks to be prepended with front base', 'default'=>'true'),
+	'rewrite_hierarchical' => array( 'arr_label' => 'Hierarchical' , 'name' => 'xy_tax[args][rewrite][hierarchical]', 'type'=>'boolean', 'desc'=>'Allows permalinks to be rewritten hierarchically(Works with WP-3.1)', 'default'=>'false'),
 	'query_var' => array( 'arr_label' => 'Query var ' , 'name' => 'xy_tax[args][query_var]', 'type'=>'string', 'desc'=>'False to prevent queries, or string to customize query var. Default will use Taxonomy Name as query var', 'default'=>''),
 	'name' => array( 'arr_label' => 'Plural Name ', 'name' => 'xy_tax[args][labels][name]' ,  'type' => 'string'  , 'desc' => 'general name for the taxonomy, usually plural.' ),
 	'singular_name' => array( 'arr_label' => 'Singular Name ', 'name' => 'xy_tax[args][labels][singular_name]' ,  'type' => 'string'  , 'desc' => 'name for one object of this taxonomy.' ),
@@ -201,6 +203,7 @@ if ( !function_exists( 'col_left' ) ) { function col_left($xydac_edit=false){
 	'separate_items_with_commas' => array( 'arr_label' => 'Seperate Item With Commas Label ', 'name' => 'xy_tax[args][labels][separate_items_with_commas]',  'type' => 'string'  , 'desc' => 'the separate item with commas text used in the taxonomy meta box. This string isn\'t used on hierarchical taxonomies.' ),
 	'add_or_remove_items' => array( 'arr_label' => 'Add or Remove Items Label ', 'name' => 'xy_tax[args][labels][add_or_remove_items]',  'type' => 'string'  , 'desc' => 'the add or remove items text and used in the meta box when JavaScript is disabled. This string isn\'t used on hierarchical taxonomies.' ),
 	'choose_from_most_used' => array( 'arr_label' => 'Choose From Most Used Label ', 'name' => 'xy_tax[args][labels][choose_from_most_used]',  'type' => 'string'  , 'desc' => 'the choose from most used text used in the taxonomy meta box. This string isn\'t used on hierarchical taxonomies.' ),
+	'view_item' => array( 'arr_label' => 'View Item Label ', 'name' => 'xy_tax[args][labels][view_item]',  'type' => 'string'  , 'desc' => 'The View Item Label used in Admin Panel,Admin Menu.' ),
 	'manage_terms' => array( 'arr_label' => 'Manage Terms ' , 'name' => 'xy_tax[args][capabilities][manage_terms]', 'type'=>'array', 'desc'=>'Assign the permissions. who can manage the Taxonomy Terms', 'default' => 'manage_categories', 'values'=>array('manage_options' => 'Administrator', 'manage_categories' => 'Editor', 'publish_posts' => 'Author', 'edit_posts' => 'Contributor', 'read' => 'Subscriber')),
 	'edit_terms' => array( 'arr_label' => 'Edit Terms ' , 'name' => 'xy_tax[args][capabilities][edit_terms]', 'type'=>'array', 'desc'=>'Assign the permissions. who can edit the Taxonomy Terms', 'default' => 'manage_categories', 'values'=>array('manage_options' => 'Administrator', 'manage_categories' => 'Editor', 'publish_posts' => 'Author', 'edit_posts' => 'Contributor', 'read' => 'Subscriber')),
 	'delete_terms' => array( 'arr_label' => 'Delete Terms ' , 'name' => 'xy_tax[args][capabilities][delete_terms]', 'type'=>'array', 'desc'=>'Assign the permissions. who can delete the Taxonomy Terms', 'default' => 'manage_categories', 'values'=>array('manage_options' => 'Administrator', 'manage_categories' => 'Editor', 'publish_posts' => 'Author', 'edit_posts' => 'Contributor', 'read' => 'Subscriber')),
@@ -209,12 +212,12 @@ if ( !function_exists( 'col_left' ) ) { function col_left($xydac_edit=false){
 	);
 ?>
 	<div id='col-left'><div class='col-wrap'>
-	<div class='form-wrap'>
-	<h3><?php _e('Add a New Taxynomy','xydac'); ?></h3>
+	<div class='form-wrap xydacfieldform'>
+	<h3><?php if(is_array($xydac_edit)) _e('Edit Taxonomy','xydac'); else _e('Add a New Taxonomy','xydac'); ?></h3>
 	<form <?php if(is_array($xydac_edit)) _e("id='form_edit_taxonomy'",'xydac');else _e("id='form_create_taxonomy'",'xydac'); ?> action='<?php _e(XYDAC_TAXONOMY_PATH,'xydac'); ?>' method='post'>
 	<div class="form-field form-required <?php if(isset($_POST['xydac_create_taxonomy']) || isset($_POST['xydac_edit_taxonomy'])) if(isset($_POST["xy_tax"]['name']) && empty($_POST["xy_tax"]['name'])) _e('form-invalid','xydac');?>"  >
         <label for='xy_tax[name]'>The Name of the taxonomy</label>
-        <input type='text' name='xy_tax[name]' class='name' id='xy_tax[name]' value="<?php if(is_array($xydac_edit)) _e($xydac_edit['name'],'xydac'); ?>" />
+        <input type='text' name='xy_tax[name]' <?php if(is_array($xydac_edit)) echo "readonly"; ?> class='name' id='xy_tax[name]' value="<?php if(is_array($xydac_edit)) _e($xydac_edit['name'],'xydac'); ?>" />
         <p>Taxonomy Name identifies your Taxonomy among others. It is usually all lowercase and contains only letters, numbers, and hyphens.</p>
     </div>
     <?php
@@ -227,12 +230,13 @@ if ( !function_exists( 'col_left' ) ) { function col_left($xydac_edit=false){
             <input type='checkbox' style="width:15px;margin-left:20px" name="xy_tax[object_type][]" id="xy_tax[object_type]" value="<?php _e($post_type->name,'xydac'); ?>" <?php if(xy_check_object($xydac_edit,$post_type->name)) _e("checked='checked'",'xydac') ?>  />&nbsp;<?php _e($post_type->label,'xydac'); ?><br /><?php }  ?>
 	    <p>Select all those Post Types where you want to use your Taxonomy.</p>
     </div>
+	<h3 style="padding: 10px 5px;">Additional Options
         <input type="button" class="button" value="Hide More Options" style="display: none;float:right" id="xydac_temp" />
         <input type="button" class="button" value="Show More Options" style="float:right" id="xydac_temp" />
-        <br/>
-        <br/>
+		</h3>
 <div id="xydac_panel_notice" style="color:red;background:yellow;padding:4px;font-weight:bold;border:1px solid #333;"><p style="font-style: normal;color:red">Following Options are all optional and you should edit them only if you know what you are doing,<br/> Okey forget the theory do what you want, and if you are messed up Come back here and set the values to default or blank and save them else just <a href="http://taxonomymanager.wordpress.com/" >  Let me know I'll sort you out, and do send me your suggestions.</a> </p></div>
-    <?php
+    
+	<?php
 	foreach ($xy_arrs as $k=>$xy_arr)
 	{$atemp = explode('[',substr($xy_arr['name'],6)); ?>
 	<div class='form-field' id="xydac_panel_<?php _e($xy_arr['name'],'xydac') ?>"  >

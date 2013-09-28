@@ -1,6 +1,6 @@
 <?php
 
-class more_fields_admin extends more_plugins_admin_object_sputnik_7 {
+class more_fields_admin extends more_plugins_admin_object_sputnik_8 {
 
 	// Add hooks & crooks
 	function add_actions() {
@@ -19,11 +19,19 @@ class more_fields_admin extends more_plugins_admin_object_sputnik_7 {
 
 
 		add_action('wp_ajax_more_fields_file_list', array(&$this, 'axaj_file_list'));
+		add_action('wp_ajax_more_fields_file_list_thumb', array(&$this, 'axaj_file_list_thumb'));
+
 		add_filter('more_fields_write_css', 'more_fields_write_css');
 		add_filter('more_fields_write_js', 'more_fields_write_js');
+		add_action('admin_print_styles-post.php', array(&$this, 'enqueue_scripts'), 1, 1);
+		add_action('admin_print_styles-post-new.php', array(&$this, 'enqueue_scripts'), 1, 1);
 
 	}
-
+	function enqueue_scripts ($a) {
+		wp_enqueue_script(array('jquery', 'editor', 'thickbox', 'media-upload'));
+		wp_enqueue_style('thickbox');
+			
+	}
 	function after_settings_init() {
 		global $wp_rewrite;
 
@@ -32,11 +40,16 @@ class more_fields_admin extends more_plugins_admin_object_sputnik_7 {
 			$wp_rewrite->flush_rules();
 		}
    	}
-
+   	function axaj_file_list_thumb() {
+		$a['url'] = wp_get_attachment_thumb_url(esc_attr($_POST['post_id']));
+		$a['thiss'] = esc_attr($_POST['thiss']);
+		echo json_encode($a);
+		die();   	
+   	}
 	function axaj_file_list() {
-		$post_id = attribute_escape($_POST['post_id']);
+		$post_id = esc_attr($_POST['post_id']);
 		$attachments['data'] = get_children( array( 'post_parent' => $post_id, 'post_type' => 'attachment', 'orderby' => 'menu_order ASC, ID', 'order' => 'DESC') );
-		$attachments['clicked'] = attribute_escape($_POST['clicked']);
+		$attachments['clicked'] = esc_attr($_POST['clicked']);
 		echo json_encode($attachments);
 		die();
 	}
@@ -64,6 +77,8 @@ class more_fields_admin extends more_plugins_admin_object_sputnik_7 {
 			<?php echo $css; ?>
 		</style>
 		<?php
+		wp_tiny_mce( false ); // true gives you a stripped down version of the editor
+
 	}
 	/*
 	**
@@ -73,7 +88,7 @@ class more_fields_admin extends more_plugins_admin_object_sputnik_7 {
 		global $more_fields;
 		$js = array();
 		foreach ($more_fields->field_types as $key => $field) {
-			if ($field['values']) $js[] = "(val == '$key')";
+			if (array_key_exists('values', $field)) $js[] = "(val == '$key')";
 		}
 		$jsq = implode(' || ', $js);
 		?>
@@ -138,7 +153,7 @@ class more_fields_admin extends more_plugins_admin_object_sputnik_7 {
 					'array' => array('fields', 'more_access_cap', 'post_types'),
 				);
 				// Validate
-				if (!($name = attribute_escape($_POST['label']))) {
+				if (!($name = esc_attr($_POST['label']))) {
 					$this->set_navigation('box');
 					return $this->error(__('Your box needs a title!', 'more-plugins'));
 				}
@@ -157,11 +172,11 @@ class more_fields_admin extends more_plugins_admin_object_sputnik_7 {
 					'array' => array(),
 				);
 				// Save all level 2 data in 'fields'.
-				if (!($name = attribute_escape($_POST['label']))) {
+				if (!($name = esc_attr($_POST['label']))) {
 					$this->set_navigation('field');
 					return $this->error(__('You need a name for the field!', 'more-plugins')); 
 				}
-				if (!attribute_escape($_POST['key'])) {
+				if (!esc_attr($_POST['key'])) {
 					$this->set_navigation('field');
 					return $this->error(__('You need to specify a custom field key for the field!', 'more-plugins')); 
 				}
@@ -202,7 +217,7 @@ class more_fields_admin extends more_plugins_admin_object_sputnik_7 {
 		if (!in_array($_POST['action'], array('editpost', 'post'))) return $post;
 
 
-		$post_id = attribute_escape($_POST['post_ID']);
+		$post_id = esc_attr($_POST['post_ID']);
 		if (!$post_id) $post_id = $new_post_id;
 		if (!$post_id) return $post;
 		
@@ -221,7 +236,7 @@ class more_fields_admin extends more_plugins_admin_object_sputnik_7 {
 				// Ok, must do this since an unticked checkbox does not appear in $_POST;
 				if (array_key_exists($post_key, (array) $_POST) || array_key_exists($key, (array) $meta_data)) {
 					$value = stripslashes($_POST[$post_key]);
-					$stored_value = $meta_data[$key][0];
+					$stored_value = (array_key_exists($key, $meta_data)) ? $meta_data[$key][0] : '';
 						if ($value || (!$value && get_post_meta($post_id, $key, true))) {
 						if ($value != get_post_meta($post_id, $key, true))  {
 							if ($field['field_type'] == 'wysiwyg') $value = wpautop($value);
@@ -247,9 +262,9 @@ class more_fields_admin extends more_plugins_admin_object_sputnik_7 {
 		global $more_fields, $more_types_settings;
 
 		if ($this->action == 'get_file_list') {
-			$post_id = attribute_escape($_GET['post_id']);
+			$post_id = esc_attr($_GET['post_id']);
 			$attachments['data'] = get_children( array( 'post_parent' => $post_id, 'post_type' => 'attachment', 'orderby' => 'menu_order ASC, ID', 'order' => 'DESC') );
-			$attachments['clicked'] = attribute_escape($_GET['clicked']);
+			$attachments['clicked'] = esc_attr($_GET['clicked']);
 			echo maybe_serialize($attachments);
 			exit();
 		}
@@ -273,11 +288,11 @@ class more_fields_admin extends more_plugins_admin_object_sputnik_7 {
 
 		foreach ((array) $box['fields'] as $field) {
 			if (!($field = apply_filters('mf_field', $field))) continue;
-
+//__d($field);
 			$title = '<label class="mf_label" for="' . $field['key'] . '">' . $field['label'] . ':</label>';
 			
- 			echo '<div class="mf_field_wrapper mf_field_' . $field['key'] .' ' . $field['type'] . '">';
-			if ($field['title'] && $field['type'] != 'checkbox') echo $title;
+ 			echo '<div class="mf_field_wrapper mf_field_' . $field['key'] .' ' . $field['field_type'] . '">';
+			//if ($field['label'] && $field['field_type'] != 'checkbox') echo $title;
 
 
 			$type = $more_fields->field_types[$field['field_type']];
@@ -293,6 +308,7 @@ class more_fields_admin extends more_plugins_admin_object_sputnik_7 {
 			foreach ((array) $parts as $part) {
 				$range = explode(':', $part);
 				if (count($range) == 2) {
+					if ($range[0] == $range[1]) $values[] = $range[0];
 					if ($range[0] < $range[1]) {
 						for ($j = $range[0]; $j <= $range[1]; $j++)
 							$values[] = $j;
@@ -310,19 +326,23 @@ class more_fields_admin extends more_plugins_admin_object_sputnik_7 {
 			//$box_is_hidden = (in_array(sanitize_title($box['name']), $hidden));
 
 			// Write the field
-			echo $this->field_type_render($type['html_before'], $field, $box['position']);		
+			if (array_key_exists('html_before', $type))
+				echo $this->field_type_render($type['html_before'], $field, $box['position']);
+				
 			if (empty($values)) echo $this->field_type_render($type['html_item'], $field, $box['position']);
 			else {
 				foreach ($values as $v) {
 				
 					// If there is a range but no item template (e.g. html5 range)
-					if (!$type['html_item']) continue;
-				
+					if (!array_key_exists('html_item', $type)) continue;
+			
+					if (!array_key_exists('html_selected', $type)) $type['html_selected'] = '';
 					echo $this->field_type_render($type['html_item'], $field, $box['position'], rtrim(ltrim($v)), $type['html_selected']);
 				}
 			}
 
-			if ($actions = $type['actions']) {
+			$actions = array_key_exists('actions', $type) ? $type['actions'] : '';
+			if ($actions) {
 				foreach ($actions as $action => $args) {
 
 					// Render the arguments
@@ -337,7 +357,8 @@ class more_fields_admin extends more_plugins_admin_object_sputnik_7 {
 			}
 			//do_action($action);
 			
-			echo $this->field_type_render($type['html_after'], $field, $box['position']);			
+			if (array_key_exists('html_after', $type))
+				echo $this->field_type_render($type['html_after'], $field, $box['position']);			
 			
 			// Add caption to field
 			// if ($f = html_entity_decode($field['caption'])) echo "<em class='mf_caption'>$f</em>";
@@ -369,6 +390,12 @@ class more_fields_admin extends more_plugins_admin_object_sputnik_7 {
 		$html = str_replace('%max%', max($field['vals']), $html);
 		$html = str_replace('%min%', min($field['vals']), $html);
 		$html = str_replace('%caption%', '<p class="mf_caption">' . stripslashes($field['caption']) . '</p>', $html);
+		if (strpos($html, '%file_list_thumb%')) {
+			$t = wp_get_attachment_thumb_url($value);
+			// $r = ($t = wp_get_attachment_thumb_url($value)) ? "<img class='mf_thumb' src='$t'>" : '';
+			if (!$t) $t = get_option('siteurl') . '/wp-content/plugins/more-fields/images/img-list-thumb.png';
+			$html = str_replace('%file_list_thumb%', $t , $html);
+		}
 
 		// if ($value_stored) $html = str_replace('%selected%', $html_selected, $html);
 

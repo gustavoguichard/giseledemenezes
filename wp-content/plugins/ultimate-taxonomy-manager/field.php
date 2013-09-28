@@ -207,11 +207,11 @@ if(isset($_GET['manage_fields_submit']) || isset($_POST['add_field_submit']) || 
     </div>
     <div id="col-left"><div class="col-wrap">
         <div class="form-wrap">
-        <h3><?php _e('Add a New Taxynomy Field','xydac'); ?></h3>
+        <h3><?php if($not_inserted) _e('Edit Taxynomy Field','xydac'); else _e('Add a New Taxynomy Field','xydac'); ?></h3>
         <form id="form_create_field" action="<?php _e(XYDAC_FIELDS_PATH."&manage_fields_submit=true&manage_fields_select=".$t_name,'xydac'); ?>" method="post">
           <div class="form-field form-required">
             <label for="field_name"><?php _e('Field Name','xydac'); ?></label>
-            <input type="text" name="field_name" class="name" id="field_name" value="<?php if($not_inserted) {if(isset($_POST['field_name'])) _e($p_fname,'xydac'); else if(isset($_GET['field'])) _e($p_fname,'xydac');} ?>">
+            <input type="text" name="field_name" class="name" <?php if($not_inserted) echo "readonly"; ?> id="field_name" value="<?php if($not_inserted) {if(isset($_POST['field_name'])) _e($p_fname,'xydac'); else if(isset($_GET['field'])) _e($p_fname,'xydac');} ?>">
             <p><?php _e('The name of the Field.','xydac'); ?></p>
           </div>
           <div class="form-field form-required">

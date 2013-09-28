@@ -2,9 +2,9 @@
 Contributors: henrikmelin, kalstrom
 Donate link: http://henrikmelin.se/plugins
 Tags: custom fields, admin, metadata, cms, custom fields, extra content, more plugins
-Requires at least: 3.0
-Tested up to: 3.0.3
-Stable tag: 2.0.5.2
+Requires at least: 3.2.1
+Tested up to: 3.2.1
+Stable tag: 2.1
 
 Adds any number of extra fields in any number of additional boxes on the Write/Edit page in the Admin.
 
@@ -47,8 +47,12 @@ More details: [Upgrading More Fields](http://labs.dagensskiva.com/2010/07/22/upg
 
 == Changelog ==
 
-= 2.0.5 = 
+= 2.1 =
+* Compatibility with WP 3.2
+* Sputnik v8 - WP_DEBUG fixes
+* New field type: Media library select with preview
 
+= 2.0.5 = 
 * Resolved issues with quotes in field and box names
 * Sputnik v6 - brought back json implementation, instead of serialize() when storing arrays in forms.
 

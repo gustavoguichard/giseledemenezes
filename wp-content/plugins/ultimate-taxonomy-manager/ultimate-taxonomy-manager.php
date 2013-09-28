@@ -4,8 +4,8 @@ Plugin Name: Ultimate Taxonomy Manager
 Plugin URI: http://taxonomymanager.wordpress.com/
 Description: Manage All your Taxonomy and Custom Taxonomy fields with ease using this plugin.
 Author: XYDAC
-Version: 1.1.10
-Author URI: http://xydac.wordpress.com/
+Version: 2.0
+Author URI: http://www.xydac.com/
 License: GPL2
 */
 /*  Copyright 2010  deepak.seth  (email : indk@ymail.com)
@@ -23,12 +23,13 @@ License: GPL2
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
+
 global $wpdb;
 if ( !defined( 'XYDAC_HOME_PATH' ) )define('XYDAC_HOME_PATH',get_bloginfo('wpurl')."/wp-admin/options-general.php?page=ultimate-taxonomy-manager&sub=home");
 if ( !defined( 'XYDAC_TAXONOMY_PATH' ) )define('XYDAC_TAXONOMY_PATH',get_bloginfo('wpurl')."/wp-admin/options-general.php?page=ultimate-taxonomy-manager&sub=custom-taxonomy");
 if ( !defined( 'XYDAC_FIELDS_PATH' ) )define('XYDAC_FIELDS_PATH',get_bloginfo('wpurl')."/wp-admin/options-general.php?page=ultimate-taxonomy-manager&sub=custom-taxonomy-fields");
 if ( !defined( 'XYDAC_FIELDTABLE' ) )define('XYDAC_FIELDTABLE',$wpdb->prefix.'taxonomyfield');
-if ( !defined( 'XYDAC_VER' ) )define('XYDAC_VER','1.1.10');
+if ( !defined( 'XYDAC_VER' ) )define('XYDAC_VER','2.0');
 include "ct.class.php";
 include 'field.php';
 include "taxonomy.php";
@@ -158,12 +159,18 @@ function xydac_home_aboutus(){
                            </tr>
                             <tr>
                                <th scope="row" valign="top"><b>Author</b></th>
-                               <td> <a href="http://xydac.wordpress.com/" style="padding:4px;font-weight:bold;text-decoration:none">XYDAC</a></td>
+                               <td> <a href="http://www.xydac.com/" style="padding:4px;font-weight:bold;text-decoration:none">XYDAC</a></td>
                            </tr>
                            <tr>
                                <th scope="row" valign="top"><b>Like this plugin?</b></th>
                                <td>
-								<a href="http://taxonomymanager.wordpress.com/" style="color:red;background:yellow;padding:4px;font-weight:bold;">[Plugin Home Page]</a> | <a href="http://wordpress.org/tags/ultimate-taxonomy-manager?forum_id=10">[Create Support Ticket]</a> | <a href="http://taxonomymanager.wordpress.com/" style="color:red;background:yellow;padding:4px;font-weight:bold;">[Request Feature]</a> | <a href="http://wordpress.org/extend/plugins/ultimate-taxonomy-manager/">[Rate Plugin]</a> | <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=nikhilseth1989%40gmail%2ecom&item_name=WordPress%20Plugin%20(Ultimate%20Taxonomy%20Manager)&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8" style="color:red;background:yellow;padding:4px;font-weight:bold;">[Make Donation]</a>
+								<a href="http://taxonomymanager.wordpress.com/" style="color:red;background:yellow;padding:4px;font-weight:bold;">[Plugin Home Page]</a> | <a href="http://wordpress.org/tags/ultimate-taxonomy-manager?forum_id=10">[Create Support Ticket]</a> | <a href="http://www.xydac.com/" style="color:red;background:yellow;padding:4px;font-weight:bold;">[Request Feature]</a> | <a href="http://wordpress.org/extend/plugins/ultimate-taxonomy-manager/">[Rate Plugin]</a> | <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=nikhilseth1989%40gmail%2ecom&item_name=WordPress%20Plugin%20(Ultimate%20Taxonomy%20Manager)&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8" style="color:red;background:yellow;padding:4px;font-weight:bold;">[Make Donation]</a>
+							   </td>
+                           </tr>
+						   <tr>
+                               <th scope="row" valign="top"><b>Important Notice</b></th>
+                               <td>
+							   <p style="color:red;background:yellow;padding:4px;font-weight:bold;">This is an old plugin and will not be further maintained. An upgrade of this plugin is <a href="http://www.xydac.com/ultimate-cms/">WordPress Ultimate CMS</a> You can safely uninstall this plugin and update to Ultimate CMS. All your settings will be maintained, and you will also have option to add other modules. </p>
 							   </td>
                            </tr>
                            
@@ -300,6 +307,12 @@ function xydac_scripts()
 }}
 if ( !function_exists( 'xydac_styles' ) ) {
 function xydac_styles() { wp_enqueue_style('thickbox'); }}
+function xydac_cms_admin_head()
+	{
+		$style_url = get_bloginfo('wpurl').'/wp-content/plugins/ultimate-taxonomy-manager/style.css';
+		echo '<link rel="stylesheet" type="text/css" media="all" href="'.$style_url.'" />';
+	}
+	add_action('admin_head','xydac_cms_admin_head');
 /* temp function */
 if ( !function_exists( 'list_hooked_functions' ) ) {
 function list_hooked_functions($tag=false){
@@ -420,6 +433,7 @@ if ( !function_exists( 'xydac_tcheckbool' ) ) { function xydac_tcheckbool($strin
 }}
 if ( !function_exists( 'xydac_reg_taxonomies' ) ) {
 function xydac_reg_taxonomies(){
+global $wp_version;
     $taxonomies = get_option("xydac_taxonomies");
     if (is_array($taxonomies) && !empty($taxonomies))
         foreach ($taxonomies  as $k=>$taxonomy )
@@ -442,6 +456,7 @@ function xydac_reg_taxonomies(){
             $xy_tax['args']['labels']['separate_items_with_commas'] = ( !empty($taxonomy['args']['labels']["separate_items_with_commas"]) ) ? $taxonomy['args']['labels']["separate_items_with_commas"] : 'Separate ' .$taxonomy['args']['label']. ' with commas';
             $xy_tax['args']['labels']['add_or_remove_items'] = ( !empty($taxonomy['args']['labels']["add_or_remove_items"]) ) ? $taxonomy['args']['labels']["add_or_remove_items"] : 'Add or remove ' .$taxonomy['args']['label'];
             $xy_tax['args']['labels']['choose_from_most_used'] = ( !empty($taxonomy['args']['labels']["choose_from_most_used"]) ) ? $taxonomy['args']['labels']["choose_from_most_used"] : 'Choose from the most used ' .$taxonomy['args']['label'];
+            $xy_tax['args']['labels']['view_item'] = ( !empty($taxonomy['args']['labels']["view_item"]) ) ? $taxonomy['args']['labels']["view_item"] : 'View ' .$taxonomy['args']['label'];			
             $xy_tax['args']['label'] = $xy_tax['args']['labels']['name'];
             $xy_tax['args']['public']= xydac_tcheckbool($taxonomy['args']['public']);
             $xy_tax['args']['show_in_nav_menus']=xydac_tcheckbool($taxonomy['args']['show_in_nav_menus']);
@@ -452,7 +467,10 @@ function xydac_reg_taxonomies(){
             if($xy_tax['args']['rewrite']){
 			$xy_tax['args']['rewrite'] = array();
             $xy_tax['args']['rewrite']['slug']= (!empty($taxonomy['args']['rewrite']['slug']) ? $taxonomy['args']['rewrite']['slug'] : $xy_tax['name']);
-            $xy_tax['args']['rewrite']['with_front']= xydac_tcheckbool($taxonomy['args']['rewrite']['with_front']);}
+            $xy_tax['args']['rewrite']['with_front']= xydac_tcheckbool($taxonomy['args']['rewrite']['with_front']);
+            if(substr($wp_version,0,3)>3)
+				@$xy_tax['args']['rewrite']['hierarchical']= xydac_tcheckbool($taxonomy['args']['rewrite']['hierarchical']);
+			}
             $xy_tax['args']['query_var'] = ( !empty($taxonomy['args']['query_var']) ? $taxonomy['args']['query_var'] : $taxonomy['name']);
             if(isset($taxonomy['args']['capabilities']))
             $xy_tax['args']['capabilities'] =  $taxonomy['args']['capabilities'];
@@ -462,9 +480,12 @@ function xydac_reg_taxonomies(){
 			$taxonomies[$k]['args']['labels'] = $xy_tax['args']['labels'];
 			$taxonomies[$k]['args']['query_var'] = $xy_tax['args']['query_var'];
 			$taxonomies[$k]['args']['rewrite']['slug'] = $xy_tax['args']['rewrite']['slug'];
+			
             //----
         }
 	update_option("xydac_taxonomies",$taxonomies);
+	global $wp_rewrite;
+	$wp_rewrite->flush_rules();
 }
 }
 

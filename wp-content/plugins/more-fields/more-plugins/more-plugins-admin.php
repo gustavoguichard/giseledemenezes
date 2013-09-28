@@ -75,18 +75,18 @@
 
 */
 
-$more_common = 'MORE_PLUGINS_ADMIN_SPUTNIK_7';
+$more_common = 'MORE_PLUGINS_ADMIN_SPUTNIK_8';
 if (!defined($more_common)) {
 
- 	class more_plugins_admin_object_sputnik_7 {
-		var $name, $slug, $settings_file, $dir, $options_url, $option_key, $data, $url;
+ 	class more_plugins_admin_object_sputnik_8 {
+		var $name, $slug, $settings_file, $dir, $options_url, $option_key, $data, $url, $keys;
 	
-		var $action, $navigation, $message, $error;
+		var $action, $navigation, $message, $error, $headed, $footed;
 		/*
 		**
 		**
 		*/
-		function more_plugins_admin_object_sputnik_7 ($settings) {
+		function more_plugins_admin_object_sputnik_8 ($settings) {
 
 			$this->name = $settings['name'];
 			$this->slug = sanitize_title($settings['name']);
@@ -126,6 +126,8 @@ if (!defined($more_common)) {
 			$this->add_actions();
 
 			$this->add_key = '57UPhPh';
+
+			
 
 			// $this->data = $this->read_data();
 		}
@@ -178,7 +180,7 @@ if (!defined($more_common)) {
 		**
 		*/
 		function admin_menu () {
-			add_options_page($this->name, $this->name, 8, $this->slug, array(&$this, 'options_page'));
+			add_options_page($this->name, $this->name, 'edit_pages', $this->slug, array(&$this, 'options_page'));
 		}
 		
 		/*
@@ -187,6 +189,20 @@ if (!defined($more_common)) {
 		*/
 		function admin_head () {
 			add_thickbox();
+			?>
+			<script type="text/javascript">
+			/* <![CDATA[ */
+				(function() {
+					var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
+					s.type = 'text/javascript';
+					s.async = true;
+					s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
+					t.parentNode.insertBefore(s, t);
+				})();
+			/* ]]> */
+			</script>
+			
+			<?php
 		
 		}
 		
@@ -284,7 +300,7 @@ if (!defined($more_common)) {
 			if (empty($s)) $s = $this->keys;
 			$key = array_pop($s);
 			$arr = $this->get_data($s, true);
-			if ($arr[$key]) unset($arr[$key]);
+			if (array_key_exists($key, $arr)) unset($arr[$key]);
 			$this->set_data($arr, $s, true);
 			return $this->data;
 		}
@@ -298,12 +314,13 @@ if (!defined($more_common)) {
 
 			// Single vars
 			$fs = array('action', 'navigation');
-			foreach ($fs as $f) $this->{$f} = attribute_escape($_GET[$f]);
+			foreach ($fs as $f) if (array_key_exists($f, $_GET)) $this->{$f} = esc_attr($_GET[$f]);
 
 			// Array vars
 			$fs = array('keys', 'action_keys');
 			foreach ($fs as $f) {
-				$a = attribute_escape($_GET[$f]);
+				if (!array_key_exists($f, $_GET)) continue;
+				$a = esc_attr($_GET[$f]);
 				$argh = $this->extract_array($a);
 				$this->{$f} = $argh;
 			}
@@ -330,8 +347,9 @@ if (!defined($more_common)) {
 			$this->load_objects();
 		
 			// Ponce som en lugercheck!
-			if ($nonce = attribute_escape($_GET['_wpnonce']))
-				check_admin_referer($this->nonce_action());
+			if (array_key_exists('_wpnonce', $_GET))
+				if ($nonce = esc_attr($_GET['_wpnonce']))
+					check_admin_referer($this->nonce_action());
 
 			// Check whatever you want - validate_submission should return false if 
 			// things don't stack up. 
@@ -354,7 +372,7 @@ if (!defined($more_common)) {
 			if ($this->action == 'move') {
 			
 				// At what level are we moving?
-				$action_keys = $this->extract_array(attribute_escape($_GET['action_keys']));
+				$action_keys = $this->extract_array(esc_attr($_GET['action_keys']));
 				if (empty($action_keys)) array_push($action_keys, '_plugin');
 				$data = $this->get_data($action_keys);
 
@@ -362,10 +380,10 @@ if (!defined($more_common)) {
 					return $this->error(__('Someting has gone awry. Sorry.', 'more-plugins'));
 				
 				// Which element is being moved?
-				$row = attribute_escape($_GET['row']);
+				$row = esc_attr($_GET['row']);
 
 				// Move a key
-				$up = ('up' == attribute_escape($_GET['direction'])) ? true : false;
+				$up = ('up' == esc_attr($_GET['direction'])) ? true : false;
 				$data = $this->move_field($data, $row, $up);
 
 				// Save the data
@@ -446,13 +464,21 @@ if (!defined($more_common)) {
 
 			// Ekkstrakkt
 			$arr = array();
-			foreach($this->fields['var'] as $field) {
-				$v = attribute_escape($_POST[$field]);
-				$arr[$field] = (stripslashes($v));
+			foreach($this->fields['var'] as $key => $field) {
+				if (!is_array($field)) {
+					$v = (array_key_exists($field, $_POST)) ? esc_attr($_POST[$field]) : '';
+					$arr[$field] = (stripslashes($v));
+				} else {
+					foreach ($field as $f) {
+						if (array_key_exists($key . ',' . $f, $_POST))
+							$arr[$key][$f] = $_POST[$key . ',' . $f];
+					
+					}				
+				}
 			}
 			foreach($this->fields['array'] as $level1 => $field) {
 				if (!is_array($field)) {
-					$vals = $this->extract_array($_POST[$field]);
+					$vals = (array_key_exists($field, $_POST)) ? $this->extract_array($_POST[$field]) : array();
 					foreach ($vals as $k => $v) {
 						if (!is_array($v) && !is_object($v)) {
 							$arr[$field][$k] = (stripslashes($v));
@@ -460,8 +486,10 @@ if (!defined($more_common)) {
 					}
 				} else {
 					foreach ($field as $level2 => $field2) {
-						$post = $this->extract_array($_POST[$level1 . ',' . $field2]);	
-						$arr[$level1][$field2] = (stripslashes($post[0]));
+						if (array_key_exists($level1 . ',' . $field2, $_POST)) {
+							$post = $this->extract_array($_POST[$level1 . ',' . $field2]);
+							if (!empty($post)) $arr[$level1][$field2] = (stripslashes($post[0]));
+						}
 					}
 				}
 			}
@@ -525,7 +553,7 @@ if (!defined($more_common)) {
 		**
 		*/		
 		function get_index($key) {
-			$val = attribute_escape($_POST[$key]);
+			$val = esc_attr($_POST[$key]);
 			$val = sanitize_title($val);
 			$val = str_replace('-', '_', $val);
 			return $val;		
@@ -604,6 +632,11 @@ if (!defined($more_common)) {
 										<li><a href="http://more-plugins.se/forum/">Plugin support forum</a></li>
 										<li><a href="http://wordpress.org/tags/<?php echo $this->slug; ?>?forum_id=10">Wordpress Forum</a></li>
 										<li><a href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&#38;business=h.melin%40gmail.com&#38;item_name=<?php echo str_replace(' ', '%20', $this->name); ?>%20Plugin&#38;no_shipping=0&#38;no_note=1&#38;tax=0&#38;currency_code=USD&#38;bn=PP%2dDonationsBF&#38;charset=UTF%2d8&#38;lc=US">Donate with PayPal</a></li>
+										<li>
+											<a class="FlattrButton" style="display:none;" href="http://more-plugins.se/plugins/more-fields/"></a>
+											<noscript><a href="http://flattr.com/thing/386416/More-Plugins" target="_blank">
+											<img src="http://api.flattr.com/button/flattr-badge-large.png" alt="Flattr this" title="Flattr this" border="0" /></a></noscript>										</li>
+
 									</ul>
 							
 								</div>
@@ -801,7 +834,8 @@ if (!defined($more_common)) {
 				$link .= '&' . $key . '=' . urlencode($value);
 			}
 			$link = wp_nonce_url($link, $this->nonce_action($args));
-			$class = ($c = $args['class']) ? $c : 'more-common';
+			$argcl = (array_key_exists('class', $args)) ? $args['class'] : 0;
+			$class = ($c = $argcl) ? $c : 'more-common';
 			$html = "<a class='$class' href='$link'>$text</a>";
 			if (!$text) return $link;
 			return $html;
@@ -816,8 +850,10 @@ if (!defined($more_common)) {
 			if (empty($args)) $args = $_GET;
 
 			$action = $this->slug . '-action_';
-			if ($a = attribute_escape($args['navigation'])) $action .= $a;			
-			if ($a = attribute_escape($args['action'])) $action .= $a;
+			if (array_key_exists('navigation', $args)) 
+				if ($a = esc_attr($args['navigation'])) $action .= $a;			
+			if (array_key_exists('action', $args)) 
+				if ($a = esc_attr($args['action'])) $action .= $a;
 
 			return $action;		
 		}
@@ -912,8 +948,10 @@ if (!defined($more_common)) {
 			// Iterate through the data
 			$subdata = $this->data;
 			foreach ($s as $key) {
-				$subdata = $subdata[$key];
+				if (array_key_exists($key, $subdata)) $subdata = $subdata[$key];
+				else $subdata = '';
 			}
+//__d($name);
 			if (!is_array($subdata)) $subdata = stripslashes($subdata);
 			return $subdata;
 		
@@ -945,7 +983,7 @@ if (!defined($more_common)) {
 			foreach ($vars as $key => $value) {
 				$checked = ($key == $set) ? ' checked="checked"' : '';
 				$html .= "<label><input class='input-radio' type='radio' name='$name' value='$key' $checked /> $value</label> ";		
-					if ($c = $comments[$key]) $html .= $this->format_comment($c);
+					if (array_key_exists($key, $comments)) if ($c = $comments[$key]) $html .= $this->format_comment($c);
 			}
 			return $html;
 		}
@@ -990,15 +1028,21 @@ if (!defined($more_common)) {
 
 			foreach ($vars as $key => $val) {
 				// Options will over-ride values
-				$class = ($a = $options[$key]['class']) ? 'class="' . $a . '"' : '';
-				$readonly = ($options[$key]['disabled']) ? ' disabled="disabled"' : '';
+//				$okc = (array_key_exists('class', $options[$key])) ? $options[$key]['class'] : 0;
+				$ok = (array_key_exists($key, $options)) ? $options[$key] : array();
+				$okc = (array_key_exists('class', $ok)) ? $ok['class'] : '';
+				$class = ($a = $okc) ? 'class="' . $a . '"' : '';
+				$okc = (array_key_exists('disabled', $ok)) ? $ok['disabled'] : '';
+				$readonly = ($okc) ? ' disabled="disabled"' : '';
 				
-				if (array_key_exists('value', (array) $options[$key]))
+				
+				if (array_key_exists('value', $ok))
 					$checked = ($options[$key]['value']) ? ' checked="checked" ' : '';
 				else $checked = (in_array($key, $values)) ? ' checked="checked"' : '';
 				
 				$html .= "<label><input class='input-check' type='checkbox' value='$key' name='${name}[]' $class $readonly $checked /> $val</label>";
-				if ($t = $options[$key]['text']) $html .= '<em>' . $t . '</em>';
+				$okc = (array_key_exists('text', $ok)) ? $ok['text'] : '';
+				if ($t = $okc) $html .= '<em>' . $t . '</em>';
 			}
 		//	$html .= '<input type="hidden" name="' . $name . '_values" value="' . implode(',', array_keys($vars)) . '">';
 			return $html;		
@@ -1129,11 +1173,12 @@ if (!defined($more_common)) {
 		}
 	} // end class
 
+	load_plugin_textdomain( 'more-plugins', false, dirname( plugin_basename( __FILE__ ) ) );
 
+	define($more_common, true);
 
 } // endif defined
 
-define($more_common, true);
 
 if (!is_callable('__d')) {
 	function __d($d) {

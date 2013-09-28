@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Twenty Eleven package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2012-12-11 16:55:02+0000\n"
+"PO-Revision-Date: 2013-09-12 14:03:11+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,11 +10,14 @@ msgstr ""
 "X-Generator: GlotPress/0.1\n"
 "Project-Id-Version: Twenty Eleven\n"
 
+msgid "http://wordpress.org/themes/twentyeleven"
+msgstr ""
+
 #: content-image.php:34
 msgid "<a href=\"%1$s\" rel=\"bookmark\"><time class=\"entry-date\" datetime=\"%2$s\">%3$s</time></a><span class=\"by-author\"> <span class=\"sep\"> by </span> <span class=\"author vcard\"><a class=\"url fn n\" href=\"%4$s\" title=\"%5$s\" rel=\"author\">%6$s</a></span></span>"
 msgstr "<a href=\"%1$s\" rel=\"bookmark\"><time class=\"entry-date\" datetime=\"%2$s\">%3$s</time></a><span class=\"by-author\"> <span class=\"sep\"> por </span> <span class=\"author vcard\"><a class=\"url fn n\" href=\"%4$s\" title=\"%5$s\" rel=\"author\">%6$s</a></span></span>"
 
-#: functions.php:584
+#: functions.php:602
 msgid "<span class=\"sep\">Posted on </span><a href=\"%1$s\" title=\"%2$s\" rel=\"bookmark\"><time class=\"entry-date\" datetime=\"%3$s\">%4$s</time></a><span class=\"by-author\"> <span class=\"sep\"> by </span> <span class=\"author vcard\"><a class=\"url fn n\" href=\"%5$s\" title=\"%6$s\" rel=\"author\">%7$s</a></span></span>"
 msgstr "<span class=\"sep\">Publicado a </span><a href=\"%1$s\" title=\"%2$s\" rel=\"bookmark\"><time class=\"entry-date\" datetime=\"%3$s\">%4$s</time></a><span class=\"by-author\"> <span class=\"sep\"> por </span> <span class=\"author vcard\"><a class=\"url fn n\" href=\"%5$s\" title=\"%6$s\" rel=\"author\">%7$s</a></span></span>"
 
@@ -46,7 +49,7 @@ msgstr "F Y"
 msgid "This entry was posted by <a href=\"%6$s\">%5$s</a>. Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
 msgstr "Esta entrada foi publicada por <a href=\"%6$s\">%5$s</a>. <a href=\"%3$s\" title=\"Ligação permanente a %4$s\" rel=\"bookmark\">Ligação permanente</a>."
 
-#: functions.php:566
+#: functions.php:584
 msgid "Reply <span>&darr;</span>"
 msgstr "Comentar <span>&darr;</span>"
 
@@ -79,11 +82,11 @@ msgstr "Comentar"
 msgid "Image navigation"
 msgstr "Navegação de imagens"
 
-#: functions.php:548
+#: functions.php:566
 msgid "%1$s at %2$s"
 msgstr "%1$s às %2$s"
 
-#: functions.php:542
+#: functions.php:560
 msgid "%1$s on %2$s <span class=\"says\">said:</span>"
 msgstr "%1$s em %2$s <span class=\"says\">disse:</span>"
 
@@ -139,19 +142,19 @@ msgstr "<strong>Cor dos links</strong>: Pode escolher a cor dos links de texto n
 msgid "<strong>Default Layout</strong>: You can choose if you want your site&#8217;s default layout to have a sidebar on the left, the right, or not at all."
 msgstr "<strong>Layout por omissão</strong>: Pode escolher se quer que o seu site apresente uma barra lateral à esquerda, à direita ou nenhuma."
 
-#: content-featured.php:29 content-featured.php:38 content-gallery.php:62
-#: content-gallery.php:72 content-image.php:47 content-image.php:56
+#: content-featured.php:29 content-featured.php:38 content-gallery.php:58
+#: content-gallery.php:68 content-image.php:47 content-image.php:56
 #: content-quote.php:44 content-quote.php:54 content-single.php:30
 #: content-single.php:33 content.php:51 content.php:63
 msgid ", "
 msgstr ", "
 
-#: content-gallery.php:66 content-image.php:51 content-quote.php:48
+#: content-gallery.php:62 content-image.php:51 content-quote.php:48
 #: content.php:55
 msgid "<span class=\"%1$s\">Posted in</span> %2$s"
 msgstr "<span class=\"%1$s\">Publicado em</span> %2$s"
 
-#: content-gallery.php:78 content-image.php:59 content-quote.php:60
+#: content-gallery.php:74 content-image.php:59 content-quote.php:60
 #: content.php:69
 msgid "<span class=\"%1$s\">Tagged</span> %2$s"
 msgstr "<span class=\"%1$s\">Com as tags</span> %2$s"
@@ -291,7 +294,7 @@ msgstr "Costa"
 msgid "Trolley"
 msgstr "Elevador da Glória"
 
-#: inc/widgets.php:91 inc/widgets.php:107
+#: inc/widgets.php:91 inc/widgets.php:100
 msgid "1 <span class=\"reply\">comment &rarr;</span>"
 msgstr "1 <span class=\"reply\">comentário &rarr;</span>"
 
@@ -299,7 +302,7 @@ msgstr "1 <span class=\"reply\">comentário &rarr;</span>"
 msgid "About %s"
 msgstr "Sobre %s"
 
-#: inc/widgets.php:91 inc/widgets.php:107
+#: inc/widgets.php:91 inc/widgets.php:100
 msgid "0 <span class=\"reply\">comments &rarr;</span>"
 msgstr "0 <span class=\"reply\">comentários &rarr;</span>"
 
@@ -330,18 +333,11 @@ msgstr "Este conteúdo está protegido por senha. Introduza a senha para ver eve
 msgid "Comments are closed."
 msgstr "Os comentários estão fechados."
 
-#: content-aside.php:16 content-featured.php:14 content-gallery.php:16
-#: content-gallery.php:48 content-image.php:15 content-link.php:16
-#: content-quote.php:14 content-status.php:15 content.php:15 content.php:19
-#: inc/widgets.php:89 showcase.php:120 showcase.php:199
+#: content-gallery.php:44 showcase.php:120
 msgid "Permalink to %s"
 msgstr "Ligação permanente para %s"
 
-#: inc/widgets.php:105
-msgid "Link to %s"
-msgstr "Ligação a %s"
-
-#: inc/widgets.php:157
+#: inc/widgets.php:150
 msgid "Title:"
 msgstr "Título:"
 
@@ -424,17 +420,14 @@ msgstr "Tente pesquisar nos arquivos mensais.  %1$s"
 msgid "It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching, or one of the links below, can help."
 msgstr "Parece que não conseguimos encontrar o que procura. Talvez a pesquisa ou um dos links abaixo possa ajudar."
 
-#: inc/widgets.php:160
+#: inc/widgets.php:153
 msgid "Number of posts to show:"
 msgstr "Número de posts a apresentar:"
 
 msgid "Twenty Eleven"
 msgstr "Twenty Eleven"
 
-msgid "http://wordpress.org/extend/themes/twentyeleven"
-msgstr "http://wordpress.org/extend/themes/twentyeleven"
-
-#: inc/widgets.php:91 inc/widgets.php:107
+#: inc/widgets.php:91 inc/widgets.php:100
 msgid "% <span class=\"reply\">comments &rarr;</span>"
 msgstr "% <span class=\"reply\">comentários &rarr;</span>"
 
@@ -444,33 +437,33 @@ msgstr "% <span class=\"reply\">comentários &rarr;</span>"
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
 msgstr "Continuar a ler <span class=\"meta-nav\">&rarr;</span>"
 
-#: content-aside.php:34 content-featured.php:23 content-gallery.php:54
+#: content-aside.php:34 content-featured.php:23 content-gallery.php:50
 #: content-image.php:28 content-intro.php:18 content-link.php:34
 #: content-page.php:18 content-quote.php:36 content-single.php:24
 #: content-status.php:35 content.php:42 image.php:90
 msgid "Pages:"
 msgstr "Páginas:"
 
-#: content-image.php:39 functions.php:590
+#: content-image.php:39 functions.php:608
 msgid "View all posts by %s"
 msgstr "Ver todas as entradas de %s"
 
-#: content-aside.php:42 content-gallery.php:87 content-image.php:64
+#: content-aside.php:42 content-gallery.php:83 content-image.php:64
 #: content-link.php:42 content-quote.php:69 content-status.php:43
 #: content.php:79 showcase.php:201
 msgid "<b>%</b> Replies"
 msgstr "<b>%</b> respostas"
 
-#: content-aside.php:42 content-gallery.php:87 content-image.php:64
+#: content-aside.php:42 content-gallery.php:83 content-image.php:64
 #: content-link.php:42 content-quote.php:69 content-status.php:43
 #: content.php:79 showcase.php:201
 msgid "<b>1</b> Reply"
 msgstr "<b>1</b> resposta"
 
-#: content-aside.php:44 content-featured.php:45 content-gallery.php:90
+#: content-aside.php:44 content-featured.php:45 content-gallery.php:86
 #: content-image.php:68 content-intro.php:19 content-link.php:44
 #: content-page.php:21 content-quote.php:72 content-single.php:52
-#: content-status.php:45 content.php:82 functions.php:525 functions.php:553
+#: content-status.php:45 content.php:82 functions.php:543 functions.php:571
 #: image.php:41
 msgid "Edit"
 msgstr "Editar"
@@ -483,7 +476,7 @@ msgstr "Esta entrada foi publicada em %1$s por <a href=\"%6$s\">%5$s</a>. <a hre
 msgid "This entry was posted in %1$s and tagged %2$s by <a href=\"%6$s\">%5$s</a>. Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
 msgstr "Esta entrada foi publicada em %1$s, com as tags %2$s, por <a href=\"%6$s\">%5$s</a>. <a href=\"%3$s\" title=\"ligação permanente para %4$s\" rel=\"bookmark\">Ligação permanente</a>."
 
-#: content-aside.php:42 content-gallery.php:87 content-image.php:64
+#: content-aside.php:42 content-gallery.php:83 content-image.php:64
 #: content-link.php:42 content-quote.php:69 content-status.php:43
 #: content.php:79 showcase.php:201
 msgid "Leave a reply"
@@ -493,7 +486,7 @@ msgstr "Deixar uma resposta"
 msgid "This entry was posted in %1$s. Bookmark the <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">permalink</a>."
 msgstr "Esta entrada foi publicada em %1$s. <a href=\"%3$s\" title=\"Permalink to %4$s\" rel=\"bookmark\">ligação permanente</a>."
 
-#: content-gallery.php:47
+#: content-gallery.php:43
 msgid "This gallery contains <a %1$s>%2$s photo</a>."
 msgid_plural "This gallery contains <a %1$s>%2$s photos</a>."
 msgstr[0] "Esta galeria contém <a %1$s>%2$s imagem</a>."
@@ -515,11 +508,11 @@ msgstr "Menu principal"
 msgid "Page %s"
 msgstr "Página %s"
 
-#: functions.php:525
+#: functions.php:543
 msgid "Pingback:"
 msgstr "Pingback:"
 
-#: functions.php:557
+#: functions.php:575
 msgid "Your comment is awaiting moderation."
 msgstr "O seu comentário aguarda moderação."
 

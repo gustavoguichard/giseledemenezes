@@ -3,7 +3,7 @@ Contributors: deepak.seth
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=nikhilseth1989%40gmail%2ecom&item_name=WordPress%20Plugin%20(Ultimate%20Taxonomy%20Manager)&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8
 Tags: taxonomy,meta,custom field,meta keywords,taxonomy manager,custom taxonomy,manage taxonomy,register taxonomy,new taxonomy
 Requires at least: 3.0
-Tested up to: 3.1-RC2
+Tested up to: 3.5
 Stable tag: trunk
 
 
@@ -14,6 +14,8 @@ This plugin is an **Easy to use Taxonomy Manager** to Customize Taxonomies and i
 **[Download now!](http://downloads.wordpress.org/plugin/ultimate-taxonomy-manager.zip)**.
 
 **[[Plugin URL]](http://taxonomymanager.wordpress.com/)** | **[[Tutorial]](https://xydac.wordpress.com/2010/09/30/ultimate-taxonomy-manager-for-wordpress/)** | **[[Ultimate Post Type Manager]](https://posttypemanager.wordpress.com/)**
+
+[[An upgrade of this plugin is **[[WordPress Ultimate CMS]](http://wordpress.org/extend/plugins/ultimate-cms/)**, Please upgrade to WordPress Ultimate CMS.]]
 
 Some Features
 
@@ -30,6 +32,7 @@ Some Features
 
 = Update =
 
+* Updated to Support View Item
 * Added Bonus Tweak to **Add Default WordPress Categories to Pages.**
 * Added Feature to Select permission based on User Role
 * Update Count Callback Function Name input for advanced users.
@@ -64,6 +67,16 @@ The automatic plugin installer should work for most people. Manual installation 
 10. Post Page
 
 == Changelog ==
+
+
+= 2.0 =
+* Fixed issue with image uploads.
+* Add CSS design to forms.
+* Fixed the UI
+
+= 1.2 =
+* Fixed jquery issues with multiple image fields
+* Rewrite heirarchical and view item option addded
 
 
 = 1.1.10 =
@@ -154,6 +167,13 @@ The automatic plugin installer should work for most people. Manual installation 
 Please let me know if you have any problem.
 
 == Upgrade Notice == 
+
+= 2.0 =
+Fixed issue with image uploads.Add CSS design to forms. Fixed the UI.
+
+= 1.2 =
+Fixed jquery issues with multiple image fields, Rewrite heirarchical and view item option addded
+
 
 = 1.1.10 =
 Fixed bugs, Fixed rewrite options,URL text box option/ Remove image options

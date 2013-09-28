@@ -1,23 +1,28 @@
 === Post Expirator ===
 Contributors: axelseaa
 Tags: expire, posts, pages, schedule
-Requires at least: 2.9
-Tested up to: 3.1
-Stable tag: 1.4.3
+Requires at least: 3.2
+Tested up to: 3.5.1
+Stable tag: 2.1.1
 
-Allows you to add an expiration date (minute) to posts which you can configure to either delete the post or change it to a draft.
+Allows you to add an expiration date to posts which you can configure to either delete the post, change it to a draft, or update the 
+post categories.
 
 == Description ==
 
 The Post Expirator plugin allows the user to set expiration dates for both posts and pages.  There is a configuration option page in the plugins 
-area that will allow you to seperataly control whether or not posts/pages are wither deleted or changed to draft status.
+area that will allow you to seperataly control whether or not posts/pages are either deleted or changed to draft status.  Additionally you can
+also choose to have the post categories change at expiration time.  If you choose to change the post category, the default action of changing 
+the status will be ignored.
 
-The plugin hooks into the wp cron processes and runs every hour.
+The plugin hooks into the wp cron processes and runs every minute by default, but can be configured to use any cron schedule (hourly, twicedaily, daily, etc).
 
 The expiration date can be displayed within the actual post by using the [postexpirator] tag.  The format attribute will override the plugin 
 default display format.  See the [PHP Date Function](http://us2.php.net/manual/en/function.date.php) for valid date/time format options. 
 
 Plugin homepage [WordPress Post Expirator](http://postexpirator.tuxdocs.net).
+
+New! [Feature Requests](http://postexpirator.uservoice.com) Please enter all feature requests here.  Requests entered via the plugin website or support forum may be missed.
 
 **[postexpirator] shortcode attributes**
 
@@ -25,23 +30,107 @@ Plugin homepage [WordPress Post Expirator](http://postexpirator.tuxdocs.net).
 * dateformat - format set here will override the value set on the settings page
 * timeformat - format set here will override the value set on the settings page 
 
-== Wordpress MU ==
-
-This plugin is compataibile with Wordpress MU 1.5+, however currently it will not work in the mu-plugins folder due to the plugin activation 
-functions.
-
-== Credits ==
-
-Plugin is based on the orginial [Expiration Date](http://www.hostscope.com/wordpress-plugins/the-expirationdate-wordpress-plugin/) plugin by jrrl. 
+This plugin is fully compatible with WordPress Multisite Mode.
 
 == Installation ==
 
 This section describes how to install the plugin and get it working.
 
-1. Upload `plugin-name.php` to the `/wp-content/plugins/` directory
+1. Unzip the plugin contents to the `/wp-content/plugins/post-expirator/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 
+== Screenshots ==
+
+1. Adding expiration date to a post
+2. Viewing the exipiration dates on the post overview screen
+3. Settings screen
+
 == Changelog ==
+
+**Version 2.1.1**
+
+* FIX: Fixed php warning issue cause when post type defaults are not set
+* NEW: Added the option to disable post expirator for certain post types if desired
+
+**Version 2.1.0**
+
+* New: Added support for heirarchical custom taxonomy
+* New: Enhanced custom post type support
+* Fix: Updated debug function to be friendly for scripted calls 
+* Fix: Change to only show public custom post types on defaults screen
+* Fix: Removed category expiration options for 'pages', which is currently unsupported
+* Fix: Some date calls were getting "double" converted for the timezone pending how other plugins handled date - this issue should now be resolved
+
+**Version 2.0.1**
+
+* Removes old scheduled hook - this was not done completely in the 2.0.0 upgrade
+* Old option cleanup
+
+**Version 2.0.0**
+
+This is a major update of the core functions of this plugin.  All current plugins and settings should be upgraded to the new formats and work as expected.  Any posts currently schedule to be expirated in the future will be automatically upgraded to the new format.
+
+* New: Improved debug calls and logging
+* New: Added the ability to expire to a "private" post
+* New: Added the ability to expire by adding or removing categories.  The old way of doing things is now known as replacing categories
+* New: Revamped the expiration process - the plugin no longer runs on an minute, hourly, or other schedule.  Each expiration event schedules a unique event to run, conserving system resources and making things more efficient
+* New: The type of expiration event can be selected for each post, directly from the post editing screen
+* New: Ability to set defaults for each post type (including custom posts)
+* New: Renamed expiration-date meta value to _expiration-date
+* New: Revamped timezone handling to be more correct with WordPress standards and fix conflicts with other plugins
+* New: 'Expires' column on post display table now uses the default date/time formats set for the blog
+* Fix: Removed kses filter calls when then schedule task runs that was causing code entered as unfiltered_html to be removed
+* Fix: Updated some calls of date to now use date_i18n
+* Fix: Most (if not all) php error/warnings should be addressed
+* Fix: Updated wpdb calls in the debug class to use wpdb_prepare correctly
+* Fix: Changed menu capability option from "edit_plugin" to "manage_options"
+
+**Version 1.6.2**
+
+* Added the ability to configure the post expirator to be enabled by default for all new posts
+* Changed some instances of mktime to time
+* Fixed missing global call for MS installs
+
+**Version 1.6.1**
+
+* Tweaked error messages, removed clicks for reset cron event
+* Switched cron schedule functions to use "current_time('timestamp')"
+* Cleaned up default values code
+* Added option to allow user to select any cron schedule (minute, hourly, twicedaily, daily) - including other defined schedules
+* Added option to set default expiration duration - options are none, custom, or publish time
+* Code cleanup - php notice
+
+**Version 1.6**
+
+* Fixed invalid html
+* Fixed i18n issues with dates
+* Fixed problem when using "Network Activate" - reworked plugin activation process
+* Replaced "Upgrade" tab with new "Diagnostics" tab
+* Reworked expire logic to limit the number of sql queries needed
+* Added debugging
+* Various code cleanup
+
+**Version 1.5.4**
+
+* Cleaned up deprecated function calls
+
+**Version 1.5.3**
+
+* Fixed bug with sql expiration query (props to Robert & John)
+
+**Version 1.5.2**
+
+* Fixed bug with shortcode that was displaying the expiration date in the incorrect timezone
+* Fixed typo on settings page with incorrect shortcode name
+
+**Version 1.5.1**
+
+* Fixed bug that was not allow custom post types to work
+
+**Version 1.5**
+
+* Moved Expirator Box to Sidebar and cleaned up meta code
+* Added ability to expire post to category
 
 **Version 1.4.3**
 
@@ -96,3 +185,31 @@ NOTE: After upgrading, you may need to reset the cron schedules.  Following onsc
 **Version 1.0**
 
 * Initial Release
+
+== Upgrade Notice ==
+
+= 2.0.1 =
+Removes old scheduled hook - this was not done completely in the 2.0.0 upgrade
+
+= 2.0.0 =
+This is a major update of the core functions of this plugin.  All current plugins and settings should be upgraded to the new formats and work as expected.  Any posts currently schedule to be expirated in the future will be automatically upgraded to the new format.
+
+= 1.6.1 =
+Tweaked error messages, added option to allow user to select cron schedule and set default exiration duration
+
+= 1.6 =
+Fixed invalid html
+Fixed i18n issues with dates
+Fixed problem when using "Network Activate" - reworked plugin activation process
+Replaced "Upgrade" tab with new "Diagnostics" tab
+Reworked expire logic to limit the number of sql queries needed
+Added debugging
+
+= 1.5.4 =
+Cleaned up deprecated function calls
+
+= 1.5.3 =
+Fixed bug with sql expiration query (props to Robert & John)
+
+= 1.5.2 =
+Fixed shortcode timezone issue

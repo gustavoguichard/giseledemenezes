@@ -102,6 +102,40 @@ function get_meta ($meta, $id = '') {
 }
 function meta ($meta, $id = '') { echo get_meta($meta, $id); }
 
+/*
+**		more_fields_img()
+**
+*/
+function more_fields_img($meta, $before = '', $after = '', $options = array()) {
+
+	$defaults = array('height' => 0, 'width' => 0, 'size' => '', 'crop' => false);	
+	$options = wp_parse_args( $options, $defaults );
+
+	if ( ! ( $id = get_meta($meta) ) ) return false;
+
+	// If the image size does not exist, make it
+	if ( !$options['size'] && ($options['height'] || $options['width'] ) ) {
+		$size = 'mf_h' . $options['height'] . '_w' . $options['width'];
+		add_image_size( $size, $options['width'], $options['height'], $options['resize'] );
+		$file = wp_get_attachment_url($id);
+		$file = str_replace(get_option('siteurl'), ABSPATH, $file);
+		$a = image_make_intermediate_size( $file, $options['width'], $options['height'], $options['crop']);
+		$as = explode('/', $file);
+		$original_file = $as[count($as) - 1];				
+		// $b = 	image_get_intermediate_size($id, $size); //{
+		$new_file = $a['file'];
+	}
+
+	// Churn out some HTML
+	$attr = array('class' => 'mf_image attachment-' . $id, 'id' => 'attachment-' . $id);
+	$b = wp_get_attachment_image($id, $size, false, $attr);
+	if ($new_file) $b = str_replace($original_file, $new_file, $b);
+	echo $before. $b . $after;
+	
+	return true;
+
+}
+
 
 /*
 **    more_fields_template_action ()

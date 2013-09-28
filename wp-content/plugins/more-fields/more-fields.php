@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: More Fields
-Version: 2.0.5.2
+Version: 2.1
 Author URI: http://more-plugins.se/
 Plugin URI: http://more-plugins.se/plugins/more-fields/
 Description:  Add more input boxes to use on the write/edit page.
