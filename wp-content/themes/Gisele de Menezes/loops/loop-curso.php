@@ -1,6 +1,6 @@
 <!-- CURSOS -->
 <?php $i = 0; ?>
-<?php $my_query = new WP_Query("post_type=curso&sessao=$sessao&order=ASC"); while ($my_query->have_posts()) : $my_query->the_post(); ?>
+<?php $my_query = new WP_Query("post_type=curso&showposts=-1&sessao=$sessao&order=ASC"); while ($my_query->have_posts()) : $my_query->the_post(); ?>
 	<?php if($i == 0){ ?>
 		<?php if(!$no_title){ ?><h3 class="item_sessao grid_9 alpha">Cursos</h3><?php };?>
 		<?php echo $cursos_text;?>
