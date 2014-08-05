@@ -1,7 +1,7 @@
 <!-- DEPOIMENTOS -->
 <?php $i = 0; ?>
 <?php if(!$taxonomy) $taxonomy = '&sessao=nenhuma';?>
-<?php $my_query = new WP_Query("post_type=depoimento". $taxonomy); while ($my_query->have_posts()) : $my_query->the_post(); ?>
+<?php $my_query = new WP_Query("post_type=depoimento&showposts=-1". $taxonomy); while ($my_query->have_posts()) : $my_query->the_post(); ?>
 	<?php if($i == 0){ ?>
 		<h3 class="item_sessao grid_9 alpha" id="area_depoimentos"><?php if($taxonomy == "&sessao=livro"):?>Comentários dos leitores<?php else:?>Depoimentos<?php endif;?></h3>
 		<?php echo $depoimentos_text;?>
