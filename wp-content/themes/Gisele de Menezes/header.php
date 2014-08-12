@@ -35,11 +35,6 @@
 </head>
 
 <body <?php body_class(); ?>>
-<?php if(!is_single(2194)):?>
-<div id="banner_livro_dobra">
-	<a href="<?php bloginfo('url'); ?>/especializacao/livro/" title="Clique aqui!">Clique Aqui!</a>
-</div>
-<?php endif;?>	
 <div id="header_wrap">
 	<div id="header" class="container_12">
 		<div id="logo" class="grid_6 suffix_1">
