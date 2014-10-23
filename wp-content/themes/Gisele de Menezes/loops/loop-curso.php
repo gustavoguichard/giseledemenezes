@@ -8,7 +8,7 @@
 			<div class="grid_9 alpha curso_item">
 				<a href="<?php the_permalink();?>"><?php the_post_thumbnail('mini_thumb');?></a>
 				<h4><a href="<?php the_permalink();?>"><?php the_title(); ?></a></h4>
-				<p><?php the_excerpt();?></p>
+				<?php the_excerpt();?>
 			</div>
 	<?php $i++; ?>
 <?php endwhile; wp_reset_query(); ?>
