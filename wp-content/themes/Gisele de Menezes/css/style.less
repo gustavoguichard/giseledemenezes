@@ -21,39 +21,18 @@
 .image-replace(){
 	display: block;
 	text-indent: -999em;
-	overflow: hidden;	
+	overflow: hidden;
 }
 
-.column-count(@n){
-	-webkit-column-count: @n;
-	-moz-column-count: @n;
-	-o-column-count: @n;
-	column-count: @n;
-}
-
-.column-gap(@size){
-	-webkit-column-gap: @size;
-	-moz-column-gap: @size;
-	-o-column-gap: @size;
-	column-gap: @size;
-}
-
-.column-rule(@width, @type, @color){
-	-webkit-column-rule: @width @type @color;
-	-moz--rule: @width @type @color;
-	-o-column-rule: @width @type @color;
-	column-rule: @width @type @color;
-}
-
-.transition(  
-    @what : all,  
-    @length : .3s,  
-    @easing : ease-in-out  
-) {  
-    -webkit-transition: @what @length @easing;  
-       -moz-transition: @what @length @easing;  
-         -o-transition: @what @length @easing;  
-            transition: @what @length @easing;  
+.transition(
+    @what : all,
+    @length : .3s,
+    @easing : ease-in-out
+) {
+    -webkit-transition: @what @length @easing;
+       -moz-transition: @what @length @easing;
+         -o-transition: @what @length @easing;
+            transition: @what @length @easing;
 }
 
 .narrow(){
@@ -61,7 +40,7 @@
 	text-transform: uppercase;
 }
 
-.rotation(@deg:5deg){ 
+.rotation(@deg:5deg){
   -o-transform: rotate(@deg);
   -webkit-transform: rotate(@deg);
   -moz-transform: rotate(@deg);
@@ -75,7 +54,7 @@ body{
 	list-style: none;
 	line-height: 1.5em;
 	color: rgb(69,54,37);
-	
+
 	a{
 		text-decoration: underline;
 		color: @red;
@@ -133,11 +112,11 @@ body{
 			display: block;
 			width: 75px;
 			font-size: 36px;
-			
+
 			a{
 				padding: 10px;
 				.transition;
-			
+
 				&:hover{
 					background: @gold;
 					border-bottom: 2px solid @red;
@@ -166,7 +145,7 @@ body{
 		border-left: 1px solid @red - #222;
 		position: relative;
 		z-index: 10;
-		
+
 		a{
 			color: white;
 			padding: 9px 12px 6px;
@@ -176,11 +155,11 @@ body{
 			text-shadow: 0 2px 0 #600;
 			.transition(all, .1s);
 			box-shadow: 0px 1px 3px rgba(0, 0, 0, .4) inset;
-			
+
 			&:before, &:after{
 				content: "";
-				width: 0; height: 0;  
-				line-height: 0;  
+				width: 0; height: 0;
+				line-height: 0;
 				bottom: 0;
 				position: absolute;
 				.transition;
@@ -188,15 +167,15 @@ body{
 				opacity: 0;
 				z-index: -100;
 			}
-			
+
 			&:before{
 				border-left: 8px solid transparent;
 			}
-			
+
 			&:after{
-				border-right: 8px solid transparent;  
+				border-right: 8px solid transparent;
 			}
-			
+
 			&:hover{
 				padding-top: 9px;
 				padding-bottom: 3px;
@@ -205,14 +184,14 @@ body{
 				bottom: -8px;
 				border-bottom: 1px solid @red - #222;
 				box-shadow: 0px 3px 5px 0 rgba(0, 0, 0, .3);
-				
+
 				&:before{
-					opacity: 1;  
+					opacity: 1;
 					left: -8px;
 				}
-				
+
 				&:after{
-					opacity: 1;  
+					opacity: 1;
 					right: -8px;
 				}
 			}
@@ -221,19 +200,19 @@ body{
 			float: left;
 			border-left: 1px solid @red + #333;
 			border-right: 1px solid @red - #222;
-			
+
 			&:hover{
 				cursor: pointer;
 			}
-			
+
 			&:last-child{
 				border-right: 1px solid @red + #333;
 			}
 		}
 	}
-	
+
 	ul.social{
-	
+
 		li a{
 			float: right;
 			width: 16px;
@@ -241,13 +220,13 @@ body{
 			background-image: url(../images/social.png);
 			margin: 8px 0 0 6px;
 			.image-replace;
-			
+
 			&.skype{background-position: 0px 0px;}
 			&.facebook{background-position: -22px 0px;}
 			&.twitter{background-position: -43px 0px;}
 			&.rss{background-position: -65px 0px;}
 		}
-		
+
 	}
 
 }
@@ -260,20 +239,20 @@ body{
 	background: @yellow url(../images/textura.jpg) no-repeat left top;
 	border-bottom: 4px solid @dark-gray;
 	color: #333;
-	
+
 	#content_wrap{
 		background: @light-gray;
 		overflow: hidden;
 		padding: 20px 10px 40px;
 		box-shadow: 0px 0px 5px rgba(0,0,0,.6) inset;
 	}
-	
+
 	#navigation_bar{
 		margin: 10px 0 16px;
 		color: @gray - #111;
 		font-size: 13px;
 	}
-		
+
 	.breadcrumb, span.comment-author{
 		font-family: "Crimson Text", Georgia, serif;
 		color: rgba(69,54,37,0.6);
@@ -283,7 +262,7 @@ body{
 		padding-bottom: 0.5em;
 		text-transform: none;
 		border-bottom: 1px solid rgba(69,54,37,0.2);
-		
+
 		a{
 			text-decoration: none;
 			font-weight: bold;
@@ -291,7 +270,7 @@ body{
 			//color: rgba(69,54,37,0.8);
 		}
 	}
-	
+
 	.breadcrumb{
 		margin-left: 20px;
 	}
@@ -308,12 +287,12 @@ body{
 		margin: 10px 0 17px;
 		font-family: @narrow-family;
 		text-shadow: 0 2px 1px white;
-		
+
 		a{
 			text-decoration: none;
 		}
 	}
-	
+
 	h1, h2{
 		font-size: 2.5em;
 		letter-spacing: 0.1em;
@@ -322,11 +301,11 @@ body{
 		margin: 5px 0 10px;
 		line-height: 1.3em;
 	}
-	
+
 	h3{
 		font-size: 24px;
 		line-height: 36px;
-		
+
 		&.item_sessao{
 			margin-top: 20px;
 			font-size: 30px;
@@ -336,17 +315,17 @@ body{
 			border-bottom: @border;
 		}
 	}
-	
+
 	h4{
 		font-size: 18px
 	}
-	
+
 	img{
 		box-shadow: 0 2px 6px rgba(0,0,0,.2);
 		padding: 4px;
 		border: 1px solid #dadada;
 		background-color: white;
-		
+
 		&.attachment-post-thumbnail, &.attachment-med_thumb, &.alignleft{
 			float: left;
 			.rotation(-1deg);
@@ -359,7 +338,7 @@ body{
 			display: inline;
 		}
 	}
-	
+
 	.alignleft{
 		text-align: left;
 	}
@@ -371,18 +350,18 @@ body{
 	.grid_3 img{
 		margin: 0 auto 0 17px;
 	}
-	
+
 	p{
 		margin: 16px 0;
 		text-align: justify;
 		line-height: 1.9em;
 		text-shadow: 0 1px 0 white;
-		
+
 		&.site_link{
 			background: url(../images/pencil.jpg) no-repeat left top;
 			padding-left: 19px;
 		}
-		
+
 		&.wp-caption-text{
 			text-align: center;
 			margin: 0;
@@ -391,7 +370,7 @@ body{
 			border: 1px solid #eee;
 		}
 	}
-	
+
 	blockquote{
 		color: #747474;
 		font-style: italic;
@@ -405,18 +384,18 @@ body{
 		font-size: 16px;
 		font-weight: lighter;
 		clear: both;
-		
+
 		p{
 			padding: 2px 30px;
 		}
-		
+
 		&.depoimento{
 			float: left;
-			
+
 			&:after{
 				margin-right: -45px;
 			}
-			
+
 			span{
 				font-family: @narrow-family;
 				float: right;
@@ -427,14 +406,14 @@ body{
 				font-style: normal;
 				margin: 10px;
 				line-height: 16px;
-				
+
 				em{
 					font-size: 12px;
 					font-weight: normal;
 				}
 			}
 		}
-		
+
 		&.depoimento.not_first{
 			border-top: none;
 			margin-top: 0;
@@ -448,7 +427,7 @@ body{
 		position: relative;
 		margin: 20px 0 -20px;
 	}
-	
+
 	blockquote:after{
 		content: '”';
 		float: right;
@@ -462,16 +441,16 @@ body{
 		font-weight: bold;
 		font-family: @narrow-family;
 	}
-	
+
 	ul{
 		width: 100%;
 		margin: 7px;
-		
-		li{		
+
+		li{
 			list-style: square;
 			list-style-position: inside;
 			margin: 3px 0;
-			
+
 			&.external_link{
 				list-style-image: url(../images/link.jpg);
 			}
@@ -481,7 +460,7 @@ body{
 			&.agenda_link{
 				list-style-image: url(../images/calendar.jpg);
 				margin: 3px 0 19px;
-				
+
 				p{
 					margin: 2px 0 0 21px;
 				}
@@ -499,15 +478,15 @@ body{
 			}
 		}
 	}
-	
+
 	ul, ol{
 		margin: 7px 7px 30px;
 	}
-	
+
 	div.post{
 		margin: 0 0 40px;
 	}
-	
+
 	p.posted, p.tags, p.comment-notes, p.logged-in-as{
 		font-size: 13px;
 		color: #777;
@@ -516,13 +495,13 @@ body{
 		margin: -7px 2px 0;
 		font-size: 12px;
 		border-bottom: @border;
-		
+
 		strong{
 			text-transform: capitalize;
 			font-style: normal;
 			color: rgba(69,54,37,0.8);
 		}
-		
+
 	}
 	p.tags, span.tags, p.comment-notes, p.logged-in-as{
 		font-weight: bold;
@@ -534,29 +513,29 @@ body{
 		li{
 			float: left;
 			margin: 0 2px;
-			
+
 			a{
 				margin: 0;
 			}
-			
+
 			span.title{
 				margin-right: 10px;
 			}
 		}
-		
+
 		a{
 			padding: 0px 6px;
 			text-decoration: none;
 			border-radius: 4px;
 			border: 1px solid #ccc;
 			.transition;
-			
+
 			&:hover{
 				background: #ddd;
 			}
 		}
 	}
-		
+
 	p.tags_list, p.comment-notes, p.logged-in-as, p.posted, p.tags, span.tags{
 		font-family: "Crimson Text", Georgia, serif;
 		color: rgba(69,54,37,0.6);
@@ -565,16 +544,16 @@ body{
 		letter-spacing: 0.2em;
 		padding-bottom: 0.5em;
 		text-transform: none;
-		
+
 		a{
 			text-transform: capitalize;
 			font-style: normal;
 		}
-	}	
-	
+	}
+
 	div.videos_galery, div.fotos_galery{
 		float: left;
-		
+
 		div.videos_item, div.fotos_item{
 			width: 200px;
 			height: 260px;
@@ -582,7 +561,7 @@ body{
 			margin: 10px;
 			float: left;
 			text-align: center;
-			
+
 			p{
 				margin: 10px;
 				width: 180px;
@@ -597,7 +576,7 @@ body{
 				width: 180px;
 			}
 		}
-		
+
 		div.fotos_item.fotos_page{
 			width: 200px;
 			height: 300px;
@@ -605,38 +584,38 @@ body{
 			margin: 10px;
 			float: left;
 			text-align: center;
-			
+
 			&:hover{
 				background: #f3f3f3;
 			}
 		}
 	}
-	
+
 	div.gallery{
 		padding-top: 10px;
-		
+
 		.gallery-item{
 			margin: 20px 30px;
 			float: left;
 			width: 160px;
-			
+
 			.gallery-caption{
 				text-align: center;
 				font-size: 12px;
 			}
 		}
 	}
-	
+
 	div.e404{
 		min-height: 700px;
 		background: url(../images/coruja.jpg) no-repeat center top;
-		
+
 		p, h2{
 			text-align: center;
-			margin: 20px 40px;		
+			margin: 20px 40px;
 		}
 	}
-	
+
 	hr{
 		background: @gray + #111;
 		height: 1px;
@@ -645,7 +624,7 @@ body{
 		margin: 40px 20px;
 		clear: both;
 	}
-	
+
 	div.navigation{
 		margin: 0 10px 30px;
 		ol li{
@@ -679,20 +658,20 @@ body{
 			margin: 0 0 3px;
 		}
 	}
-	
+
 	div.curso_item{
 
 		padding: 10px 0;
-		
+
 		&:hover{
 			background: #eee;
 		}
-		
+
 		img{
 			float: left;
 			margin: 0 10px;
 		}
-		
+
 		h4, p{
 			margin: 0;
 			display: block;
@@ -700,45 +679,45 @@ body{
 			padding-right: 10px;
 		}
 	}
-	
+
 	h4#comments-title{
 		margin-top: 50px;
 	}
-		
+
 	ol.comments_list{
 		border-top: @border;
 		margin: 10px 0 50px;
-		
+
 		li.comment{
 			border-bottom: @border;
 			padding: 10px 0;
-			
+
 			&.depth-1{
 				margin-left: @depth * 0;
 			}
 			&.depth-2{
 				margin-left: @depth * 1;
 			}
-			
+
 		}
-		
+
 		.children{
 			margin: 0;
 			padding: 0;
-					
+
 			li{
 				border-bottom: none;
 				border-top: @border;
 				list-style: none;
 			}
 		}
-		
+
 		blockquote{
 			border: none;
 			background: #f7f7f7;
 			color: @gray - #333;
 			padding: 3px 15px;
-			
+
 			p{
 				padding: 0;
 			}
@@ -747,11 +726,11 @@ body{
 			}
 		}
 	}
-	
+
 	.learn_more{
 		margin: 10px 0 30px;
 		overflow: hidden;
-		
+
 		h3{
 			margin: 0;
 		}
@@ -761,12 +740,6 @@ body{
 .post_content{
 	padding: 30px 0;
 	clear: both;
-	
-	&.divided{
-		.column-count(2);
-		.column-gap(30px);
-		.column-rule(1px, dashed, rgba(69, 54, 37, 0.2));
-	}
 }
 
 .other_posts{
@@ -780,28 +753,28 @@ body{
 	font-size: 0.9em;
 	letter-spacing: 0.2em;
 	padding-bottom: 0.5em;
-	
+
 	.next_link, .previous_link{
 		margin: 0 !important;
 	}
-	
+
 	.next_link{
 		float: right;
 	}
-	
+
 	.previous_link{
 		float: left;
 	}
 }
 
 form{
-	
+
 	font-weight: bold;
 	color: @gray;
-	
+
 	input[type=submit], input.input_submit, input#submit{
 		border-radius: 4px;
-		border: 1px solid #ccc;				
+		border: 1px solid #ccc;
 		background: white;
 		color: @red;
 		padding: 5px 8px;
@@ -812,11 +785,11 @@ form{
 			background: #ddd;
 		}
 	}
-	
+
 	p.form-allowed-tags{
 		display: none;
 	}
-	
+
 	input.input_text, textarea, input[type=text]{
 		border: 1px solid #ddd;
 		.transition;
@@ -825,13 +798,13 @@ form{
 		font-weight: bold;
 		font-size: 13px;
 		border-radius: 4px;
-		
+
 		&:focus{
 			background: #eee;
 			border-color: @gray;
 		}
 	}
-	
+
 	input.error{
 		background: #fee;
 		border: 1px solid #faa;
@@ -840,26 +813,26 @@ form{
 		background: #efe;
 		border-color: 1px solid #afa;
 	}
-	
+
 	input[aria-required=true]{
 		padding-left: 12px;
 	}
-	
+
 	&#searchform{
 		float: right;
 	}
-	
+
 	label{
 		display: block;
 		font-family: @narrow-family;
 		text-indent: 3px;
 	}
-	
+
 	span.required{
 		position: relative;
 		margin-right: -13px;
 	}
-	
+
 	&#pagseguro{
 		margin-top: 35px;
 	}
@@ -869,7 +842,7 @@ form{
 #banner{
 	background: black url(../images/night_sky.jpg) top left no-repeat;
 	color: #bbb;
-	
+
 	::-moz-selection {
       background-color: @green;
       color: white;
@@ -878,44 +851,44 @@ form{
       background-color: @green;
       color: white;
 	}
-	
+
 	#banner_bg{
 		background: url(../images/nevoa.jpg) no-repeat 90% 0px;
 		overflow: hidden;
-		
+
 		#banner_wrap{
 			overflow: hidden;
 			padding: 40px 0 20px;
 		}
-		
+
 		#banner_wrap.opened{
 			background: url(../images/relogio_espiral.jpg) no-repeat bottom left;
 		}
 	}
-	
+
 	h1, h2, h3, h4{
 		text-align: center;
 		font-weight: lighter;
 	}
-	
+
 	.chamada{
 		margin: 20px auto;
 		font-variant: small-caps;
 	}
-	
+
 	h2.chamada{
 		font-size: 24px;
 	}
-	
+
 	h3.chamada{
 		font-size: 18px;
 	}
-	
+
 	h4.chamada{
 		font-size: 18px;
 		color: @orange;
 	}
-	
+
 	h1.titulo{
 		font-family: 'Tangerine', serif;
 		font-weight: lighter;
@@ -924,7 +897,7 @@ form{
 		line-height: 70px;
 		letter-spacing: 1px;
 	}
-	
+
 	h3.slogan{
 		font-size: 11px;
 		color: @orange;
@@ -938,12 +911,12 @@ form{
 		text-indent: 12px;
 		margin: 10px 0;
 	}
-	
+
 	p.separator{
 		font-style: italic;
 		text-align: center;
 	}
-			
+
 	a.call_button{
 		width: 220px;
 		display: block;
@@ -963,26 +936,26 @@ form{
 			background: @orange;
 		}
 	}
-	
+
 	a.call_button.inlined1, a.call_button.inlined2{float: left;}
 	a.call_button.inlined1{margin-right: 15px;}
-	
+
 	a.buy_button{
 		background-color: @green;
 	}
-	
+
 	img{
 		margin-bottom: 20px;
 	}
-	
+
 	ul{
 		font-size: 15px;
 		line-height: 19px;
-		
+
 		li{
 			margin: 20px 0 0;
 			display: block;
-			
+
 			em{
 				font-style: normal;
 				color: @yellow;
@@ -995,7 +968,7 @@ form{
 	text-shadow: 1px 1px 0 white;
 
 	ul.sidebar_sessao_nav{
-		
+
 		img{
 			.rotation(-1deg);
 			padding: 2px;
@@ -1003,7 +976,7 @@ form{
 			background-color: white;
 			margin: 0;
 		}
-		
+
 		li{
 			padding: 10px 0;
 			border-bottom: 1px solid #ccc;
@@ -1011,20 +984,20 @@ form{
 			list-style: none;
 			margin: 0;
 			.transition;
-			
+
 			&:first-child{
 				border-top: 1px solid #ccc;
 			}
-			
+
 			&:hover{
 				background-color: #eee;
-				
+
 				a{
 					color: @red;
 					font-size: 21px;
 				}
 			}
-			
+
 			span{
 				font: bold 15px/21px @narrow-family;
 				text-align: center;
@@ -1032,7 +1005,7 @@ form{
 				padding: 10px 0;
 				margin-top: 10px;
 				width: 145px;
-				
+
 				a{
 					text-decoration: none;
 					color: @gray;
@@ -1053,17 +1026,17 @@ form{
 	text-align: center;
 	line-height: 30px;
 	border-bottom: 1px solid @cream;
-	
+
 	h3{
 		display: none;
 	}
-	
+
 	a{
 		color: @brown;
 		text-decoration: none;
 		font-family: @narrow-family;
 		padding: 0 3px;
-		
+
 		&:hover{
 			text-decoration: underline;
 		}
@@ -1074,18 +1047,18 @@ form{
 	text-align: center;
 	padding-top: 30px;
 	color:@red;
-	
+
 	a{
 		color: #333;
 		text-decoration: none;
 		font-weight: bold;
 	}
-	
+
 	h4{
 		font-size: 30px;
 		line-height: 40px;
 	}
-	
+
 	p.copyright{
 		.narrow;
 		letter-spacing: 2px;
@@ -1156,7 +1129,7 @@ a.post-edit-link{
 	height: 190px;
 	background: url(../images/dobra_livro_bg.png) no-repeat left top;
 	top: 0;
-	
+
 	a{
 		text-indent: -999em;
 		width: 235px;
@@ -1166,7 +1139,7 @@ a.post-edit-link{
 		background: url(../images/dobra_livro.png) no-repeat -15px -30px;
 		.transition(all, .3s);
 		.rotation(6deg);
-		
+
 		&:hover{
 			top: 0px;
 			background-position: 0 0;
