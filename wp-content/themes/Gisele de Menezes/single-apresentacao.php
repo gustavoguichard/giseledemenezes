@@ -35,8 +35,8 @@ get_header(); ?>
 		<?php require_once('loops/loop-curso.php'); ?>
 		<?php require_once('loops/loop-fotos.php'); ?>
 		<?php require_once('loops/loop-videos.php'); ?>
+    <?php require_once('loops/loop-depoimentos.php'); ?>
 		<?php require_once('loops/loop-links.php'); ?>
-		<?php require_once('loops/loop-depoimentos.php'); ?>
 		<?php// require_once('loops/loop-terapeutas.php'); ?>
 
 
