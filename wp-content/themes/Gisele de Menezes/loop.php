@@ -52,9 +52,9 @@
 			<?php if ( is_archive() || is_search() || is_home() ):?>
 			<p class="posted">Escrito em: <strong><?php the_time('j \d\e F \d\e Y');?></strong> por <strong><?php the_author();?></strong></p>
 			<?php endif;?>
-			
-			<div class="post_content divided"><?php the_excerpt(); ?></div>
-			
+
+			<div class="post_content"><?php the_excerpt(); ?></div>
+
 			<?php if ( is_home() ):?>
 			<p class="tags">
 				Participe do Blog: <?php comments_popup_link( __( 'Deixe um comentário', 'twentyten' ), __( '1 Comentário', 'twentyten' ), __( '% Comentários', 'twentyten' ) ); ?>
