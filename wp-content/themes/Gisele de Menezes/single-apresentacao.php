@@ -19,7 +19,7 @@ get_header(); ?>
 
 <div id="content" class="clearfix">
 	<div id="content_wrap" class="container_12">
-		<?php get_template_part( 'navigation', 'index' );?>	
+		<?php get_template_part( 'navigation', 'index' );?>
 
 		<div class="grid_9">
 			<?php if(!$have_banner):?>
@@ -30,18 +30,18 @@ get_header(); ?>
 
 		<?php $is_apresentacao = true; ?>
 		<?php $title_esp = get_the_title();?>
-		
+
 		<?php require_once('loops/loop-agenda.php'); ?>
 		<?php require_once('loops/loop-curso.php'); ?>
 		<?php require_once('loops/loop-fotos.php'); ?>
 		<?php require_once('loops/loop-videos.php'); ?>
 		<?php require_once('loops/loop-links.php'); ?>
 		<?php require_once('loops/loop-depoimentos.php'); ?>
-		<?php require_once('loops/loop-terapeutas.php'); ?>
+		<?php// require_once('loops/loop-terapeutas.php'); ?>
 
-		
+
 		</div>
-	<?php get_sidebar(); ?>	
+	<?php get_sidebar(); ?>
 	</div>
 </div>
 <?php get_footer(); ?>
