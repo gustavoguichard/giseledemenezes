@@ -6,7 +6,7 @@
 	<?php if($i == 0){ ?>
 		<h3 class="item_sessao grid_9 alpha">Artigos e Links</h3>
 		<?php echo $links_text;?>
-		<ul>
+		<ul style="clear: both;">
 	<?php }; ?>
 			<?php if(!get_the_terms($post->ID, 'pessoa') || get_the_terms($post->ID, 'sessao')){?><li class="itens_list site_link"><a href="<?php the_permalink();?>"><?php the_title(); ?></a></li><?php }; ?>
 	<?php $i++; ?>
