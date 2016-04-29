@@ -38,7 +38,7 @@ function shortLink($atts, $content = null) {
 	), $atts));
 	return '<a href="' . get_bloginfo('url') . '/' . $caminho .'">'.$content.'</a>';
 }
-add_shortcode('link', 'shortLink'); 
+add_shortcode('link', 'shortLink');
 
 function agendaLancamentos() {
 	$html = '<ul class="open_banner">';
@@ -53,6 +53,12 @@ function agendaLancamentos() {
 	return $html;
 }
 add_shortcode('lancamentos', 'agendaLancamentos');
+
+function redirectPage( $noOp, $url = '' ) {
+  return "<meta http-equiv='refresh' content='0;URL=" . $url . "'>";
+}
+add_shortcode('redirect', 'redirectPage');
+
 
 function formularioComprarLivro() {
 	$html = '<div style="text-align: center;"><form id="pagseguro" class="open_banner" method="POST" action="https://pagseguro.uol.com.br/checkout/checkout.jhtml" target="pagseguro">
@@ -77,7 +83,7 @@ function twentyten_setup() {
 	add_editor_style();
 
 	add_theme_support( 'post-thumbnails' );
-	set_post_thumbnail_size( 220, 220, false ); 
+	set_post_thumbnail_size( 220, 220, false );
 	add_image_size('mini_thumb', 60, 55, true);
     add_image_size('med_thumb', 180, 180, true);
 	add_image_size('email_thumb', 150, 150, false);
@@ -192,11 +198,11 @@ function twentyten_comment( $comment, $args, $depth ) {
 		<div id="comment-<?php comment_ID(); ?>">
 		<blockquote class="comment-body">
 		<span class="comment-author vcard">
-			<?php echo get_comment_author_link();?>: 
+			<?php echo get_comment_author_link();?>:
 		<?php if ( $comment->comment_approved == '0' ) : ?>
 			<em>Seu comentário está aguardando moderação</em>
 		<?php endif; ?>
-			
+
 			<?php echo get_comment_time() . 'hs de ' . get_comment_date(); ?> <?php edit_comment_link( __( 'Editar', 'twentyten' ), ' ' );	?>
 		</span><!-- .comment-meta .commentmetadata -->
 
@@ -263,7 +269,7 @@ add_action( 'widgets_init', 'twentyten_remove_recent_comments_style' );
 
 /* CUSTOM POST TYPES */
 add_action('init', 'my_cpt_init');
-function my_cpt_init() 
+function my_cpt_init()
 {
 /* DEPOIMENTOS */
   $labelsDepoimentos = array(
@@ -276,7 +282,7 @@ function my_cpt_init()
     'view_item' => __('Ver Depoimento'),
     'search_items' => __('Procurar Depoimentos'),
     'not_found' =>  __('Não foram encontrados Depoimentos'),
-    'not_found_in_trash' => __('Não há Depoimentos no lixo'), 
+    'not_found_in_trash' => __('Não há Depoimentos no lixo'),
     'parent_item_colon' => '',
     'menu_name' => 'Depoimentos'
 
@@ -288,11 +294,11 @@ function my_cpt_init()
     'show_ui' => true,
     'exclude_from_search' => true,
     'menu_position' => 5,
-    'show_in_menu' => true, 
+    'show_in_menu' => true,
     'query_var' => true,
     'rewrite' => true,
     'capability_type' => 'post',
-    'has_archive' => true, 
+    'has_archive' => true,
     'hierarchical' => false,
     'supports' => array('title','editor')
   );
@@ -307,7 +313,7 @@ function my_cpt_init()
     'view_item' => __('Ver Evento'),
     'search_items' => __('Procurar Eventos'),
     'not_found' =>  __('Não foram encontrados Eventos'),
-    'not_found_in_trash' => __('Não há Eventos no lixo'), 
+    'not_found_in_trash' => __('Não há Eventos no lixo'),
     'parent_item_colon' => '',
     'menu_name' => 'Agenda de Eventos'
 
@@ -320,11 +326,11 @@ function my_cpt_init()
     'exclude_from_search' => true,
     'menu_position' => 5,
     'menu_icon' => get_bloginfo('url') . '/wp-admin/images/date-button.gif',
-    'show_in_menu' => true, 
+    'show_in_menu' => true,
     'query_var' => true,
     'rewrite' => true,
     'capability_type' => 'post',
-    'has_archive' => true, 
+    'has_archive' => true,
     'hierarchical' => false,
     'supports' => array('title','editor')
   );
@@ -339,7 +345,7 @@ function my_cpt_init()
     'view_item' => __('Ver Álbum'),
     'search_items' => __('Procurar Álbum'),
     'not_found' =>  __('Não foram encontrados Álbuns'),
-    'not_found_in_trash' => __('Não há Álbuns no lixo'), 
+    'not_found_in_trash' => __('Não há Álbuns no lixo'),
     'parent_item_colon' => '',
     'menu_name' => 'Álbuns'
 
@@ -352,11 +358,11 @@ function my_cpt_init()
     'exclude_from_search' => false,
     'menu_position' => 5,
     'menu_icon' => get_bloginfo('url') . '/wp-admin/images/media-button-image.gif',
-    'show_in_menu' => true, 
+    'show_in_menu' => true,
     'query_var' => true,
     'rewrite' => array('slug' => 'album', 'with_front' => false),
     'capability_type' => 'post',
-    'has_archive' => true, 
+    'has_archive' => true,
     'hierarchical' => false,
     'supports' => array('title','editor', 'thumbnail')
   );
@@ -371,7 +377,7 @@ function my_cpt_init()
     'view_item' => __('Ver Vídeo'),
     'search_items' => __('Procurar Vídeos'),
     'not_found' =>  __('Não foram encontrados Vídeos'),
-    'not_found_in_trash' => __('Não há Vídeos no lixo'), 
+    'not_found_in_trash' => __('Não há Vídeos no lixo'),
     'parent_item_colon' => '',
     'menu_name' => 'Vídeos'
 
@@ -384,11 +390,11 @@ function my_cpt_init()
     'exclude_from_search' => false,
     'menu_position' => 5,
     'menu_icon' => get_bloginfo('url') . '/wp-admin/images/media-button-video.gif',
-    'show_in_menu' => true, 
+    'show_in_menu' => true,
     'query_var' => true,
     'rewrite' => array('slug' => 'video', 'with_front' => false),
     'capability_type' => 'post',
-    'has_archive' => true, 
+    'has_archive' => true,
     'hierarchical' => false,
     'supports' => array('title','editor')
   );
@@ -403,7 +409,7 @@ function my_cpt_init()
     'view_item' => __('Ver Curso'),
     'search_items' => __('Procurar Cursos'),
     'not_found' =>  __('Não foram encontrados Cursos'),
-    'not_found_in_trash' => __('Não há Cursos no lixo'), 
+    'not_found_in_trash' => __('Não há Cursos no lixo'),
     'parent_item_colon' => '',
     'menu_name' => 'Cursos'
 
@@ -415,11 +421,11 @@ function my_cpt_init()
     'show_ui' => true,
     'exclude_from_search' => false,
     'menu_position' => 5,
-    'show_in_menu' => true, 
+    'show_in_menu' => true,
     'query_var' => true,
     'rewrite' => array('slug' => 'curso', 'with_front' => false),
     'capability_type' => 'page',
-    'has_archive' => true, 
+    'has_archive' => true,
     'hierarchical' => false,
     'supports' => array('title','editor', 'thumbnail', 'excerpt')
   );
@@ -434,7 +440,7 @@ function my_cpt_init()
     'view_item' => __('Ver Terapeuta'),
     'search_items' => __('Procurar Terapeutas'),
     'not_found' =>  __('Não foram encontrados Terapeutas'),
-    'not_found_in_trash' => __('Não há Terapeutas no lixo'), 
+    'not_found_in_trash' => __('Não há Terapeutas no lixo'),
     'parent_item_colon' => '',
     'menu_name' => 'Terapeutas'
 
@@ -447,11 +453,11 @@ function my_cpt_init()
     'exclude_from_search' => true,
     'menu_position' => 5,
     'menu_icon' => get_bloginfo('url') . '/wp-admin/images/media-button-other.gif',
-    'show_in_menu' => true, 
+    'show_in_menu' => true,
     'query_var' => true,
     'rewrite' => true,
     'capability_type' => 'page',
-    'has_archive' => true, 
+    'has_archive' => true,
     'hierarchical' => false,
     'supports' => array('title','editor', 'thumbnail')
   );
@@ -466,7 +472,7 @@ function my_cpt_init()
     'view_item' => __('Ver Especialização'),
     'search_items' => __('Procurar Especialização'),
     'not_found' =>  __('Não foram encontradas Especializações'),
-    'not_found_in_trash' => __('Não há Especializações no lixo'), 
+    'not_found_in_trash' => __('Não há Especializações no lixo'),
     'parent_item_colon' => '',
     'menu_name' => 'Especializações'
 
@@ -479,11 +485,11 @@ function my_cpt_init()
     'exclude_from_search' => false,
     'menu_position' => 5,
     'menu_icon' => get_bloginfo('url') . '/wp-admin/images/media-button-image.gif',
-    'show_in_menu' => true, 
+    'show_in_menu' => true,
     'query_var' => true,
 		'rewrite' => array('slug' => 'especializacao', 'with_front' => false),
     'capability_type' => 'page',
-    'has_archive' => true, 
+    'has_archive' => true,
     'hierarchical' => false,
     'supports' => array('title','editor', 'thumbnail')
   );
@@ -498,7 +504,7 @@ function my_cpt_init()
     'view_item' => __('Ver Link'),
     'search_items' => __('Procurar Links'),
     'not_found' =>  __('Não foram encontrados Links'),
-    'not_found_in_trash' => __('Não há Links no lixo'), 
+    'not_found_in_trash' => __('Não há Links no lixo'),
     'parent_item_colon' => '',
     'menu_name' => 'Links Relacionados'
 
@@ -509,11 +515,11 @@ function my_cpt_init()
     'publicly_queryable' => false,
     'show_ui' => true,
     'exclude_from_search' => true,
-    'show_in_menu' => true, 
+    'show_in_menu' => true,
     'query_var' => true,
     'rewrite' => true,
     'capability_type' => 'post',
-    'has_archive' => true, 
+    'has_archive' => true,
     'hierarchical' => false,
     'menu_position' => 5,
     'supports' => array('title')
@@ -530,7 +536,7 @@ function my_cpt_init()
     'view_item' => __('Ver Banner'),
     'search_items' => __('Procurar Banner'),
     'not_found' =>  __('Não foram encontrados Bannera'),
-    'not_found_in_trash' => __('Não há Banners no lixo'), 
+    'not_found_in_trash' => __('Não há Banners no lixo'),
     'parent_item_colon' => '',
     'menu_name' => 'Banners'
 
@@ -546,7 +552,7 @@ function my_cpt_init()
     'query_var' => true,
     'rewrite' => true,
     'capability_type' => 'page',
-    'has_archive' => true, 
+    'has_archive' => true,
     'hierarchical' => false,
     'menu_position' => 100,
     'supports' => array('title', 'editor')
@@ -561,7 +567,7 @@ function my_cpt_init()
   register_post_type('links_relacionados',$argsLink);
   register_post_type('lancamento',$argsLancamento);
   register_post_type('banner',$argsBanner);
-  
+
   flush_rewrite_rules();
 }
 
@@ -602,7 +608,7 @@ function editglobalcustomfields() {
 		<input type="text" name="google_analytics" id="google_analytics" value="<?php echo get_option('google_analytics');?>" />
 	</p>
 	<p><input type="submit" name="Submit" value="Salvar Alterações" /></p>
-	
+
 	<input type="hidden" name="action" value="update" />
 	<input type="hidden" name="page_options" value="google_analytics" />
 
