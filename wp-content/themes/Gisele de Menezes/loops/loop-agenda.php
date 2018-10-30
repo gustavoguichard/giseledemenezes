@@ -14,8 +14,6 @@
 				<p><?php $localiza = get_post_meta($post->ID, 'localizacao', true); if($localiza != '') echo $localiza . '<br />';?>
 				<?php $informa = get_post_meta($post->ID, 'contatos', true); if($informa != '') echo '<strong>Informações: </strong>' . $informa;?></p>
 
-				<p><?php $pagseguro = get_post_meta($post->ID, 'pagseguro_bt', true); if($pagseguro != '') echo '<strong>Inscreva-se: </strong>' . $pagseguro;?></p>
-
 				<?php $curso_term = null; $curso_term = wp_get_post_terms($post->ID, 'cursos', 'name' );
 						$term = null; $term = wp_get_post_terms($post->ID, 'sessao', 'name' );
 						if($curso_term != null && !$is_curso):?>
@@ -23,13 +21,13 @@
 				<?php $curso_query = new WP_Query("post_type=curso&cursos=$curso&showposts=1"); while ($curso_query->have_posts()) : $curso_query->the_post(); ?>
 					<p><a href="<?php the_permalink(); ?>">Saiba mais: <?php the_title();?></a></p>
 				<?php endwhile; endif;?>
-				
+
 				<?php if($term != null && !$is_apresentacao):?>
 				<?php foreach($term as $sessao):?>
 				<?php $sessao_query = new WP_Query("post_type=apresentacao&sessao=".$sessao->slug."&showposts=1"); while ($sessao_query->have_posts()) : $sessao_query->the_post(); ?>
 				<p><a href="<?php the_permalink(); ?>"><?php the_title();?></a></p>
 				<?php endwhile; endforeach; endif;?>
-				
+
 			</li>
 	<?php $i++; ?>
 <?php endwhile; wp_reset_query(); ?>

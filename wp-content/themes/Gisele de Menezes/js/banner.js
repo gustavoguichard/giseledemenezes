@@ -1,13 +1,13 @@
 jQuery(function() {
 	var $banner = $('#banner_wrap');
-	
+
 	$('.open_banner').hide();
-	
+
 	$('a.call_button.closed_banner, a#reduzir').click(function(e){
 		e.preventDefault();
 		toggleBanner();
 	})
-	
+
 	function toggleBanner(){
 		if($banner.hasClass('opened')){
 			$('.open_banner').slideUp();
