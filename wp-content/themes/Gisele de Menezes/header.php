@@ -5,17 +5,11 @@
  * @since Gisele de Menezes 3.0
  */
 ?><!DOCTYPE html>
-<!--[if lt IE 7]> <html class="no-js ie6" lang="pt-BR"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js ie7" lang="pt-BR"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js ie8" lang="pt-BR"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="pt-BR"> <!--<![endif]-->
+<html class="no-js" lang="pt-BR">
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
 <title><?php wp_title( '', true);?></title>
-<link rel="profile" href="http://gmpg.org/xfn/11" />
-<link href="http://fonts.googleapis.com/css?family=Arimo:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=Crimson+Text:regular,regularitalic,bold,bolditalic" rel="stylesheet" type="text/css" />
-<link href="http://fonts.googleapis.com/css?family=Tangerine" rel="stylesheet" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,700|Tangerine&display=swap" rel="stylesheet">
 <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 <?php

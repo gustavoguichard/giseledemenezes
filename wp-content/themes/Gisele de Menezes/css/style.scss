@@ -1,55 +1,44 @@
-@green: #3c6a20;
-@red: #981212;
-@bg: #f8f4f0;
-@gold: #ffe177;
-@orange: #e44a29;
-@yellow: #e2b452;
-@brown: #5a2e15;
-@light-brown: #705953;
-@cream: #f8f4f0;
-@dark-gray: #9c9c9a;
-@gray: #999;
-@light-gray: #e6e6e4;
-@depth: 100px;
-@yellow-bg: #e2b452 url(../images/faixa_bg.jpg) repeat;
-@narrow-family: "Crimson Text", Georgia, serif;
-@font-family: 'Arimo', Verdana, sans-serif;
+$green: #3c6a20;
+$red: #981212;
+$bg: #f8f4f0;
+$gold: #ffe177;
+$orange: #e44a29;
+$yellow: #e2b452;
+$brown: #5a2e15;
+$light-brown: #705953;
+$cream: #f8f4f0;
+$dark-gray: #9c9c9a;
+$gray: #999;
+$light-gray: #e6e6e4;
+$depth: 100px;
+$yellow-bg: #e2b452 url(../images/faixa_bg.jpg) repeat;
+$narrow-family: "Crimson Text", Georgia, serif;
+$font-family: sans-serif;
 
-@border: 1px solid #c6c3bd;
+$border: 1px solid #c6c3bd;
 
 
-.image-replace(){
+@mixin image-replace(){
 	display: block;
 	text-indent: -999em;
 	overflow: hidden;
 }
 
-.transition(
-    @what : all,
-    @length : .3s,
-    @easing : ease-in-out
-) {
-    -webkit-transition: @what @length @easing;
-       -moz-transition: @what @length @easing;
-         -o-transition: @what @length @easing;
-            transition: @what @length @easing;
-}
-
-.narrow(){
-	font-family: @narrow-family;
+@mixin narrow(){
+	font-family: $narrow-family;
 	text-transform: uppercase;
 }
 
-.rotation(@deg:5deg){
-  -o-transform: rotate(@deg);
-  -webkit-transform: rotate(@deg);
-  -moz-transform: rotate(@deg);
-  transform: rotate(@deg);
+@mixin rotation($deg:5deg){
+  -o-transform: rotate($deg);
+  -webkit-transform: rotate($deg);
+  -moz-transform: rotate($deg);
+  transform: rotate($deg);
 }
 
 body{
-	background: @light-gray;
-	font: 14px/19px @font-family;
+	background: $light-gray;
+	font: 14px/19px $font-family;
 	text-rendering: optimizeLegibility;
 	list-style: none;
 	line-height: 1.5em;
@@ -57,17 +46,17 @@ body{
 
 	a{
 		text-decoration: underline;
-		color: @red;
+		color: $red;
 	}
 }
 
 ::-moz-selection {
-      background-color: @red;
+      background-color: $red;
       color: #eee;
       text-shadow: 0 0 0 white;
 }
 ::selection {
-      background-color: @red;
+      background-color: $red;
       color: #eee;
       text-shadow: 0 0 0 white;
 }
@@ -78,10 +67,10 @@ body{
 
 #header{
 	overflow: hidden;
-	color: @red;
+	color: $red;
 	background: url(../images/coruja_top.jpg) no-repeat 68% 0;
 	a{
-		color:@red;
+		color:$red;
 		text-decoration:none;
 	}
 	#logo{
@@ -95,7 +84,7 @@ body{
 			line-height: 180px;
 		}
 		h3{
-			.narrow;
+			@include narrow;
 			font-weight: normal;
 			font-size: 11px;
 			letter-spacing: 1px;
@@ -115,11 +104,11 @@ body{
 
 			a{
 				padding: 10px;
-				.transition;
+				transition: all .3s ease-in-out;
 
 				&:hover{
-					background: @gold;
-					border-bottom: 2px solid @red;
+					background: $gold;
+					border-bottom: 2px solid $red;
 					position: relative;
 					top: -8px;
 				}
@@ -129,20 +118,20 @@ body{
 }
 
 #top_menu{
-	border: 1px solid @red - #333;
+	border: 1px solid #650000;
 	border-left-width: 0;
 	border-right-width: 0;
-	background: @red url(../images/top_menu_bg.jpg) bottom;
+	background: $red url(../images/top_menu_bg.jpg) bottom;
 	position: relative;
 	height: 36px;
 	z-index: 10;
 	box-shadow: 0px 1px 3px rgba(0, 0, 0, .4) inset, 0px 2px 5px rgba(0, 0, 0, .4);
 
 	ul.nav{
-		.narrow;
+		@include narrow;
 		font-size: 11px;
 		letter-spacing: 2px;
-		border-left: 1px solid @red - #222;
+		border-left: 1px solid #760000;
 		position: relative;
 		z-index: 10;
 
@@ -151,9 +140,9 @@ body{
 			padding: 9px 12px 6px;
 			display: block;
 			text-decoration: none;
-			background: @red url(../images/top_menu_bg.jpg) center;
+			background: $red url(../images/top_menu_bg.jpg) center;
 			text-shadow: 0 2px 0 #600;
-			.transition(all, .1s);
+			transition: all 1s ease-in-out;
 			box-shadow: 0px 1px 3px rgba(0, 0, 0, .4) inset;
 
 			&:before, &:after{
@@ -162,8 +151,8 @@ body{
 				line-height: 0;
 				bottom: 0;
 				position: absolute;
-				.transition;
-				border-top: 4px solid @red - #222;
+				transition: all .3s ease-in-out;
+				border-top: 4px solid #760000;
 				opacity: 0;
 				z-index: -100;
 			}
@@ -182,7 +171,7 @@ body{
 				position: relative;
 				z-index: 1000;
 				bottom: -8px;
-				border-bottom: 1px solid @red - #222;
+				border-bottom: 1px solid #760000;
 				box-shadow: 0px 3px 5px 0 rgba(0, 0, 0, .3);
 
 				&:before{
@@ -198,15 +187,15 @@ body{
 		}
 		li{
 			float: left;
-			border-left: 1px solid @red + #333;
-			border-right: 1px solid @red - #222;
+			border-left: 1px solid #650000;
+			border-right: 1px solid #760000;
 
 			&:hover{
 				cursor: pointer;
 			}
 
 			&:last-child{
-				border-right: 1px solid @red + #333;
+				border-right: 1px solid #650000;
 			}
 		}
 	}
@@ -219,7 +208,7 @@ body{
 			height: 16px;
 			background-image: url(../images/social.png);
 			margin: 8px 0 0 6px;
-			.image-replace;
+			@include image-replace;
 
 			&.skype{background-position: 0px 0px;}
 			&.facebook{background-position: -22px 0px;}
@@ -236,12 +225,12 @@ body{
 }
 
 #content{
-	background: @yellow url(../images/textura.jpg) no-repeat left top;
-	border-bottom: 4px solid @dark-gray;
+	background: $yellow url(../images/textura.jpg) no-repeat left top;
+	border-bottom: 4px solid $dark-gray;
 	color: #333;
 
 	#content_wrap{
-		background: @light-gray;
+		background: $light-gray;
 		overflow: hidden;
 		padding: 20px 10px 40px;
 		box-shadow: 0px 0px 5px rgba(0,0,0,.6) inset;
@@ -249,12 +238,12 @@ body{
 
 	#navigation_bar{
 		margin: 10px 0 16px;
-		color: @gray - #111;
+		color: #888;
 		font-size: 13px;
 	}
 
 	.breadcrumb, span.comment-author{
-		font-family: "Crimson Text", Georgia, serif;
+		font-family: $narrow-family;
 		color: rgba(69,54,37,0.6);
 		font-size: 0.9em;
 		font-style: italic;
@@ -285,7 +274,7 @@ body{
 		letter-spacing: -1px;
 		font-weight: bold;
 		margin: 10px 0 17px;
-		font-family: @narrow-family;
+		font-family: $narrow-family;
 		text-shadow: 0 2px 1px white;
 
 		a{
@@ -312,7 +301,7 @@ body{
 			float: left;
 			clear: both;
 			padding: 18px 0 10px;
-			border-bottom: @border;
+			border-bottom: $border;
 		}
 	}
 
@@ -328,7 +317,7 @@ body{
 
 		&.attachment-post-thumbnail, &.attachment-med_thumb, &.alignleft{
 			float: left;
-			.rotation(-1deg);
+			@include rotation(-1deg);
 			margin: 0 25px 8px 0;
 			display: inline;
 		}
@@ -375,7 +364,7 @@ body{
 		color: #747474;
 		font-style: italic;
 		overflow: visible;
-		border: @border;
+		border: $border;
 		display: block;
 		min-width: 60%;
 		border-left-width: 0;
@@ -397,7 +386,7 @@ body{
 			}
 
 			span{
-				font-family: @narrow-family;
+				font-family: $narrow-family;
 				float: right;
 				font-weight: bold;
 				font-size: 13px;
@@ -435,11 +424,11 @@ body{
 		margin-top: -20px;
 	}
 	blockquote:before, blockquote:after{
-		color: @gray;
+		color: $gray;
 		font-size: 36px;
 		display: block;
 		font-weight: bold;
-		font-family: @narrow-family;
+		font-family: $narrow-family;
 	}
 
 	ul{
@@ -494,7 +483,7 @@ body{
 	p.posted{
 		margin: -7px 2px 0;
 		font-size: 12px;
-		border-bottom: @border;
+		border-bottom: $border;
 
 		strong{
 			text-transform: capitalize;
@@ -528,7 +517,7 @@ body{
 			text-decoration: none;
 			border-radius: 4px;
 			border: 1px solid #ccc;
-			.transition;
+			transition: all .3s ease-in-out;
 
 			&:hover{
 				background: #ddd;
@@ -537,7 +526,7 @@ body{
 	}
 
 	p.tags_list, p.comment-notes, p.logged-in-as, p.posted, p.tags, span.tags{
-		font-family: "Crimson Text", Georgia, serif;
+		font-family: $narrow-family;
 		color: rgba(69,54,37,0.6);
 		font-size: 0.9em;
 		font-style: italic;
@@ -617,7 +606,7 @@ body{
 	}
 
 	hr{
-		background: @gray + #111;
+		background: #aaa;
 		height: 1px;
 		border: none;
 		border-bottom: 1px solid #dadada;
@@ -633,14 +622,14 @@ body{
 				margin: 0 4px;
 			}
 			span.page{
-				background: @gold;
-				border-color: @gold;
-				color: @red;
+				background: $gold;
+				border-color: $gold;
+				color: $red;
 			}
 			a.page, a.next, a.prev{
-				background-color: @gold;
-				color: @red;
-				border-color: @yellow;
+				background-color: $gold;
+				color: $red;
+				border-color: $yellow;
 			}
 		}
 	}
@@ -685,18 +674,18 @@ body{
 	}
 
 	ol.comments_list{
-		border-top: @border;
+		border-top: $border;
 		margin: 10px 0 50px;
 
 		li.comment{
-			border-bottom: @border;
+			border-bottom: $border;
 			padding: 10px 0;
 
 			&.depth-1{
-				margin-left: @depth * 0;
+				margin-left: $depth * 0;
 			}
 			&.depth-2{
-				margin-left: @depth * 1;
+				margin-left: $depth * 1;
 			}
 
 		}
@@ -707,7 +696,7 @@ body{
 
 			li{
 				border-bottom: none;
-				border-top: @border;
+				border-top: $border;
 				list-style: none;
 			}
 		}
@@ -715,7 +704,7 @@ body{
 		blockquote{
 			border: none;
 			background: #f7f7f7;
-			color: @gray - #333;
+			color: #666;
 			padding: 3px 15px;
 
 			p{
@@ -745,11 +734,11 @@ body{
 .other_posts{
 	width: 90%;
 	margin: 30px auto;
-	border-top: @border;
-	border-bottom: @border;
+	border-top: $border;
+	border-bottom: $border;
 	overflow: hidden;
 	padding: 0 !important;
-	font-family: @narrow-family;
+	font-family: $narrow-family;
 	font-size: 0.9em;
 	letter-spacing: 0.2em;
 	padding-bottom: 0.5em;
@@ -770,17 +759,17 @@ body{
 form{
 
 	font-weight: bold;
-	color: @gray;
+	color: $gray;
 
 	input[type=submit], input.input_submit, input#submit{
 		border-radius: 4px;
 		border: 1px solid #ccc;
 		background: white;
-		color: @red;
+		color: $red;
 		padding: 5px 8px;
 		cursor: pointer;
 		font-weight: bold;
-		.transition;
+		transition: all .3s ease-in-out;
 		&:hover{
 			background: #ddd;
 		}
@@ -792,7 +781,7 @@ form{
 
 	input.input_text, textarea, input[type=text]{
 		border: 1px solid #ddd;
-		.transition;
+		transition: all .3s ease-in-out;
 		padding: 4px;
 		color: #777;
 		font-weight: bold;
@@ -801,7 +790,7 @@ form{
 
 		&:focus{
 			background: #eee;
-			border-color: @gray;
+			border-color: $gray;
 		}
 	}
 
@@ -824,7 +813,7 @@ form{
 
 	label{
 		display: block;
-		font-family: @narrow-family;
+		font-family: $narrow-family;
 		text-indent: 3px;
 	}
 
@@ -844,11 +833,11 @@ form{
 	color: #bbb;
 
 	::-moz-selection {
-      background-color: @green;
+      background-color: $green;
       color: white;
 	}
 	::selection {
-      background-color: @green;
+      background-color: $green;
       color: white;
 	}
 
@@ -886,22 +875,22 @@ form{
 
 	h4.chamada{
 		font-size: 18px;
-		color: @orange;
+		color: $orange;
 	}
 
 	h1.titulo{
 		font-family: 'Tangerine', serif;
 		font-weight: lighter;
 		font-size: 60px;
-		color: @yellow;
+		color: $yellow;
 		line-height: 70px;
 		letter-spacing: 1px;
 	}
 
 	h3.slogan{
 		font-size: 11px;
-		color: @orange;
-		.narrow;
+		color: $orange;
+		@include narrow;
 		letter-spacing: 4px;
 		line-height: 50px;
 
@@ -931,9 +920,9 @@ form{
 		font-variant: small-caps;
 		text-decoration: none;
 		border-radius: 4px;
-		.transition;
+		transition: all .3s ease-in-out;
 		&:hover{
-			background: @orange;
+			background: $orange;
 		}
 	}
 
@@ -941,7 +930,7 @@ form{
 	a.call_button.inlined1{margin-right: 15px;}
 
 	a.buy_button{
-		background-color: @green;
+		background-color: $green;
 	}
 
 	img{
@@ -958,7 +947,7 @@ form{
 
 			em{
 				font-style: normal;
-				color: @yellow;
+				color: $yellow;
 			}
 		}
 	}
@@ -970,7 +959,7 @@ form{
 	ul.sidebar_sessao_nav{
 
 		img{
-			.rotation(-1deg);
+			@include rotation(-1deg);
 			padding: 2px;
 			border: 1px solid #dadada;
 			background-color: white;
@@ -983,7 +972,7 @@ form{
 			overflow: hidden;
 			list-style: none;
 			margin: 0;
-			.transition;
+			transition: all .3s ease-in-out;
 
 			&:first-child{
 				border-top: 1px solid #ccc;
@@ -993,13 +982,13 @@ form{
 				background-color: #eee;
 
 				a{
-					color: @red;
+					color: $red;
 					font-size: 21px;
 				}
 			}
 
 			span{
-				font: bold 15px/21px @narrow-family;
+				font: bold 15px/21px $narrow-family;
 				text-align: center;
 				float: right;
 				padding: 10px 0;
@@ -1008,33 +997,33 @@ form{
 
 				a{
 					text-decoration: none;
-					color: @gray;
-					.transition;
+					color: $gray;
+					transition: all .3s ease-in-out;
 				}
 			}
 		}
 	}
 	h4{
 		text-align: center;
-		color: @gray;
+		color: $gray;
 	}
 }
 
 #rodape_tags{
-	background: @yellow-bg;
+	background: $yellow-bg;
 	padding: 14px 0;
 	text-align: center;
 	line-height: 30px;
-	border-bottom: 1px solid @cream;
+	border-bottom: 1px solid $cream;
 
 	h3{
 		display: none;
 	}
 
 	a{
-		color: @brown;
+		color: $brown;
 		text-decoration: none;
-		font-family: @narrow-family;
+		font-family: $narrow-family;
 		padding: 0 3px;
 
 		&:hover{
@@ -1046,7 +1035,7 @@ form{
 #footer{
 	text-align: center;
 	padding-top: 30px;
-	color:@red;
+	color:$red;
 
 	a{
 		color: #333;
@@ -1060,7 +1049,7 @@ form{
 	}
 
 	p.copyright{
-		.narrow;
+		@include narrow;
 		letter-spacing: 2px;
 		font-size: 9px;
 		margin: 15px;
@@ -1071,79 +1060,13 @@ form{
 a.post-edit-link{
 	margin: 0 auto;
 	padding: 5px;
-	background: @yellow-bg;
-	border: 1px solid @red;
+	background: $yellow-bg;
+	border: 1px solid $red;
 	border-radius: 4px;
 }
 
 #logo h1, ul.top_nav, #footer h4, #footer h4 a{
 	font-family: 'Tangerine', serif;
 	font-weight: lighter;
-	color:@red;
-}
-
-
-
-/* BUGS IE */
-
-.ie6 #top_menu{
-	overflow: hidden;
-}
-
-.ie6 .social li, .ie7 .social li{
-	display: inline;
-}
-
-.ie7 #sidebar ul.sidebar_sessao_nav li span{
-	width: 130px;
-}
-.ie6 #sidebar ul.sidebar_sessao_nav li span{
-	width: 110px;
-}
-.ie6 #sidebar{
-	width: 200px;
-}
-.ie6 #sidebar ul.sidebar_sessao_nav img{
-	padding: 2px 0;
-}
-
-.ie6 #header #logo h3{
-	position: absolute;
-	top: 160px;
-	left: 50%;
-	margin-left: -470px;
-	width: 460px;
-	overflow: hidden;
-}
-
-
-/* BANNER DOBRA LIVRO */
-#banner_livro_dobra, #banner_livro_dobra a{
-	position: absolute;
-	left: 0;
-	cursor: pointer;
-}
-
-#banner_livro_dobra{
-	width: 235px;
-	height: 190px;
-	background: url(../images/dobra_livro_bg.png) no-repeat left top;
-	top: 0;
-
-	a{
-		text-indent: -999em;
-		width: 235px;
-		height: 200px;
-		top: -10px;
-		overflow: hidden;
-		background: url(../images/dobra_livro.png) no-repeat -15px -30px;
-		.transition(all, .3s);
-		.rotation(6deg);
-
-		&:hover{
-			top: 0px;
-			background-position: 0 0;
-			.rotation(0deg);
-		}
-	}
+	color:$red;
 }

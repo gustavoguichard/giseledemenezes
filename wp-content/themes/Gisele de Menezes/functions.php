@@ -11,27 +11,7 @@
 add_action( 'after_setup_theme', 'twentyten_setup' );
 
 if ( ! function_exists( 'twentyten_setup' ) ):
-/**
- * Sets up theme defaults and registers support for various WordPress features.
- *
- * Note that this function is hooked into the after_setup_theme hook, which runs
- * before the init hook. The init hook is too late for some features, such as indicating
- * support post thumbnails.
- *
- * To override twentyten_setup() in a child theme, add your own twentyten_setup to your child theme's
- * functions.php file.
- *
- * @uses add_theme_support() To add support for post thumbnails and automatic feed links.
- * @uses register_nav_menus() To add support for navigation menus.
- * @uses add_custom_background() To add support for a custom background.
- * @uses add_editor_style() To style the visual editor.
- * @uses load_theme_textdomain() For translation/localization support.
- * @uses add_custom_image_header() To add support for a custom header.
- * @uses register_default_headers() To register the default custom header images provided with the theme.
- * @uses set_post_thumbnail_size() To set a custom post thumbnail size.
- *
- * @since Twenty Ten 1.0
- */
+
 function shortLink($atts, $content = null) {
 	extract(shortcode_atts(array(
 		"caminho" => '' // default URL
@@ -40,42 +20,10 @@ function shortLink($atts, $content = null) {
 }
 add_shortcode('link', 'shortLink');
 
-function agendaLancamentos() {
-	$html = '<ul class="open_banner">';
-	$lancamentos_query = new WP_Query('post_type=lancamento&showposts=-1&orderby=menu_order&order=ASC'); while ($lancamentos_query->have_posts()) : $lancamentos_query->the_post();
-		$html .= '<li><em>' . get_the_title();
-		$html .= '</em> - ' . get_post_meta(get_the_ID(), 'data', true) . '<br />';
-		$html .= get_post_meta(get_the_ID(), 'localizacao', true) . '<br />';
-		$html .= 'Informações: ' . get_post_meta(get_the_ID(), 'contatos', true) . '</li>';
-	endwhile;
-	$html .= '</ul>';
-	wp_reset_query();
-	return $html;
-}
-add_shortcode('lancamentos', 'agendaLancamentos');
-
 function redirectPage( $noOp, $url = '' ) {
   return "<meta http-equiv='refresh' content='0;URL=" . $url . "'>";
 }
 add_shortcode('redirect', 'redirectPage');
-
-
-function formularioComprarLivro() {
-	$html = '<div style="text-align: center;"><form id="pagseguro" class="open_banner" method="POST" action="https://pagseguro.uol.com.br/checkout/checkout.jhtml" target="pagseguro">
-		<input type="hidden" name="email_cobranca" value="gi@giseledemenezes.com" />
-		<input type="hidden" name="tipo" value="CBR" />
-		<input type="hidden" name="moeda" value="BRL" />
-		<input type="hidden" name="item_id" value="1" />
-		<input type="hidden" name="item_descr" value="Livro: Uma viagem no tempo Uma expedicao no espaco - Outra India, Outro Jesus" />
-		<input type="hidden" name="item_quant" value="1" />
-		<input type="hidden" name="item_valor" value="4400" />
-		<input type="hidden" name="frete" value="0" />
-		<input type="hidden" name="peso" value="1000" />
-		<input type="image" name="submit" src="https://p.simg.uol.com.br/out/pagseguro/i/botoes/pagamentos/205x30-comprar.gif" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
-	</form></div>';
-	return $html;
-}
-add_shortcode('comprar_livro', 'formularioComprarLivro');
 
 function twentyten_setup() {
 
@@ -103,8 +51,8 @@ function twentyten_setup() {
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
-		'top_menu' => __( 'Main Navigation', 'twentyten' ),
-		'nav' => __( 'Full Navigation', 'twentyten' ),
+		'top_menu' => 'Main Navigation',
+		'nav' => 'Full Navigation',
 	) );
 
 }
@@ -131,7 +79,7 @@ add_filter( 'excerpt_length', 'twentyten_excerpt_length' );
  * @return string "Continue Reading" link
  */
 function twentyten_continue_reading_link() {
-	return ' <a href="'. get_permalink() . '">' . __( 'Ver mais...', 'twentyten' ) . '</a>';
+	return ' <a href="'. get_permalink() . '">Ver mais...</a>';
 }
 
 /**
@@ -588,41 +536,3 @@ function change_post_object_label() {
 }
 add_action( 'init', 'change_post_object_label' );
 add_action( 'admin_menu', 'change_post_menu_label' );
-
-
-add_action('admin_menu', 'add_gcf_interface');
-
-function add_gcf_interface() {
-	add_options_page('Opções do Site', 'Opções do Site', '8', 'functions', 'editglobalcustomfields');
-}
-
-function editglobalcustomfields() {
-	?>
-	<div class='wrap'>
-	<h2>Opções do Site</h2>
-	<form method="post" action="options.php">
-	<?php wp_nonce_field('update-options') ?>
-
-	<p><strong>Código do Google Analytics:</strong></p>
-	<p>
-		<input type="text" name="google_analytics" id="google_analytics" value="<?php echo get_option('google_analytics');?>" />
-	</p>
-	<p><input type="submit" name="Submit" value="Salvar Alterações" /></p>
-
-	<input type="hidden" name="action" value="update" />
-	<input type="hidden" name="page_options" value="google_analytics" />
-
-	</form>
-	</div>
-	<?php
-}
-
-// add google analytics to footer
-function add_google_analytics() {
-	echo '<script src="http://www.google-analytics.com/ga.js" type="text/javascript"></script>';
-	echo '<script type="text/javascript">';
-	echo 'var pageTracker = _gat._getTracker("UA-' . get_option('google_analytics') . '");';
-	echo 'pageTracker._trackPageview();';
-	echo '</script>';
-}
-add_action('wp_footer', 'add_google_analytics');
