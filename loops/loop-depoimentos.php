@@ -6,7 +6,7 @@
 		<h3 class="item_sessao grid_9 alpha" id="area_depoimentos"><?php if($taxonomy == "&sessao=livro"):?>Comentários dos leitores<?php else:?>Depoimentos<?php endif;?></h3>
 		<?php echo $depoimentos_text;?>
 	<?php }; ?>
-	<?php if(!get_the_terms($post->ID, 'pessoa') || get_the_terms($post->ID, 'sessao')){?>
+	<?php if(get_the_terms($post->ID, 'sessao')){?>
 	<blockquote class="depoimento <?php if($i>0) echo 'not_first';?>">
 		<?php the_content(); ?>
 		<span><?php the_title(); ?><br />

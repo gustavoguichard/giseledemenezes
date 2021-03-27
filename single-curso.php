@@ -36,8 +36,6 @@ get_header(); ?>
 <?php endwhile; ?>
 
 		<?php require_once('loops/loop-agenda.php'); ?>
-		<?php require_once('loops/loop-fotos.php'); ?>
-		<?php require_once('loops/loop-videos.php'); ?>
 		<?php require_once('loops/loop-depoimentos.php'); ?>
 
 

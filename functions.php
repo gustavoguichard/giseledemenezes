@@ -29,7 +29,7 @@ function twentyten_setup() {
 
 	// This theme styles the visual editor with editor-style.css to match the theme style.
 	add_editor_style();
-
+  update_option( 'link_manager_enabled', 0 );
 	add_theme_support( 'post-thumbnails' );
 	set_post_thumbnail_size( 220, 220, false );
 	add_image_size('mini_thumb', 60, 55, true);
@@ -42,7 +42,6 @@ function twentyten_setup() {
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
-		'top_menu' => 'Main Navigation',
 		'nav' => 'Full Navigation',
 	) );
 
@@ -261,70 +260,6 @@ function my_cpt_init()
     'hierarchical' => false,
     'supports' => array('title','editor')
   );
-/* ÁLBUNS */
-  $labelsAlbum = array(
-    'name' => _x('Álbuns', 'post type general name'),
-    'singular_name' => _x('Álbum', 'post type singular name'),
-    'add_new' => _x('Novo Álbum', 'album'),
-    'add_new_item' => __('Adicionar novo Álbum'),
-    'edit_item' => __('Editar Álbum'),
-    'new_item' => __('Novo Álbum'),
-    'view_item' => __('Ver Álbum'),
-    'search_items' => __('Procurar Álbum'),
-    'not_found' =>  __('Não foram encontrados Álbuns'),
-    'not_found_in_trash' => __('Não há Álbuns no lixo'),
-    'parent_item_colon' => '',
-    'menu_name' => 'Álbuns'
-
-  );
-  $argsAlbum = array(
-    'labels' => $labelsAlbum,
-    'public' => true,
-    'publicly_queryable' => true,
-    'show_ui' => true,
-    'exclude_from_search' => false,
-    'menu_position' => 5,
-    'menu_icon' => get_bloginfo('url') . '/wp-admin/images/media-button-image.gif',
-    'show_in_menu' => true,
-    'query_var' => true,
-    'rewrite' => array('slug' => 'album', 'with_front' => false),
-    'capability_type' => 'post',
-    'has_archive' => true,
-    'hierarchical' => false,
-    'supports' => array('title','editor', 'thumbnail')
-  );
-/* VÍDEOS */
-  $labelsVideo = array(
-    'name' => _x('Vídeos', 'post type general name'),
-    'singular_name' => _x('Vídeo', 'post type singular name'),
-    'add_new' => _x('Novo Vídeo', 'video'),
-    'add_new_item' => __('Adicionar novo Vídeo'),
-    'edit_item' => __('Editar Vídeo'),
-    'new_item' => __('Novo Vídeo'),
-    'view_item' => __('Ver Vídeo'),
-    'search_items' => __('Procurar Vídeos'),
-    'not_found' =>  __('Não foram encontrados Vídeos'),
-    'not_found_in_trash' => __('Não há Vídeos no lixo'),
-    'parent_item_colon' => '',
-    'menu_name' => 'Vídeos'
-
-  );
-  $argsVideo = array(
-    'labels' => $labelsVideo,
-    'public' => true,
-    'publicly_queryable' => true,
-    'show_ui' => true,
-    'exclude_from_search' => false,
-    'menu_position' => 5,
-    'menu_icon' => get_bloginfo('url') . '/wp-admin/images/media-button-video.gif',
-    'show_in_menu' => true,
-    'query_var' => true,
-    'rewrite' => array('slug' => 'video', 'with_front' => false),
-    'capability_type' => 'post',
-    'has_archive' => true,
-    'hierarchical' => false,
-    'supports' => array('title','editor')
-  );
 /* CURSOS */
   $labelsCurso = array(
     'name' => _x('Cursos', 'post type general name'),
@@ -390,8 +325,6 @@ function my_cpt_init()
   );
   register_post_type('depoimento',$argsDepoimentos);
   register_post_type('evento',$argsAgenda);
-  register_post_type('album',$argsAlbum);
-  register_post_type('video',$argsVideo);
   register_post_type('curso',$argsCurso);
   register_post_type('apresentacao',$argsApresentacao);
 

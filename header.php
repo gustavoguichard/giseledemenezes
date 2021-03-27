@@ -35,7 +35,6 @@
 			<h1><a href="<?php echo home_url( '/' ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 			<h3><?php bloginfo( 'description' ); ?></h3>
 		</div>
-		<?php wp_nav_menu( array( 'menu_class' => 'top_nav grid_5', 'theme_location' => 'top_menu', 'container' => 'ul') ); ?>
 	</div>
 	<div id="top_menu" class="clearfix">
 		<div id="top_menu_wrap" class="container_12">
