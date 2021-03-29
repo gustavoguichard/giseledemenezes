@@ -1,14 +1,18 @@
-{% extends "base.twig" %}
-
-{% block content %}
-  <article class="flex flex-grow justify-center bg-gray-50 post-type-{{ post.post_type }}" id="post-{{ post.ID }}">
-    <section class="p-8 w-full max-w-screen-lg bg-white shadow-sm">
-      {% if post.thumbnail %}
-        <img class="m-2 mr-6 mb-4 float-left ring ring-rose-800" src="{{ post.thumbnail.src('med_thumb') }}" alt="{{ post.title }}" />
-      {% endif %}
-      {% include "partial/title.twig" with {'hide_subtitle': true} %}
-      <div class="prose lg:prose-lg xl:prose-xl prose-rose pb-8">{{ post.content }}</div>
-      {% include "partial/loop-agenda.twig" %}
-    </section>
-  </article>
+{% extends "base.twig" %} {% block content %}
+<article class="flex flex-col md:flex-row flex-grow justify-center bg-gray-50">
+  <section class="p-8 w-full max-w-screen-lg bg-white shadow-sm">
+    {% if post.thumbnail %}
+    <img
+      class="m-2 mr-6 mb-4 float-left ring ring-rose-800"
+      src="{{ post.thumbnail.src('med_thumb') }}"
+      alt="{{ post.title }}"
+    />
+    {% endif %} {% include "partial/title.twig" with {'hide_subtitle': true} %}
+    <div class="prose lg:prose-lg xl:prose-xl prose-rose pb-8">
+      {{ post.content }}
+    </div>
+    {% include "loop/events.twig" %}
+  </section>
+  {% include 'sidebar.twig' %}
+</article>
 {% endblock %}

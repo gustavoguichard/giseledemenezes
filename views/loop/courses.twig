@@ -1,10 +1,4 @@
-{% if posts|length > 0 %} {% if with_title %}
-<h3
-  class="text-2xl font-semibold text-gray-600 border-t-2 pt-3 pb-2 my-4 border-b-2"
->
-  Cursos
-</h3>
-{% endif %}
+{% include "loop/title.twig" with { 'title': 'Cursos' } %}
 <div
   class="flex flex-wrap mb-4 {% if not with_title %}border-t-4 pt-6{% endif %}"
 >
@@ -39,4 +33,3 @@
   </div>
   {% endfor %}
 </div>
-{% endif %}

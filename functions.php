@@ -154,6 +154,7 @@ class StarterSite extends TimberSite {
       'hierarchical' => false,
       'supports' => array('title','editor')
     );
+
     /* CURSOS */
     $labelsCurso = array(
       'name' => 'Cursos',
@@ -216,10 +217,54 @@ class StarterSite extends TimberSite {
   }
 
   function register_taxonomies() {
+    $args = [
+      "label" => "Pertence a uma especialização?",
+      "labels" => [
+        "name" => "Pertence a uma especialização?",
+        "singular_name" => "Especializações",
+      ],
+      "public" => true,
+      "publicly_queryable" => true,
+      "hierarchical" => false,
+      "show_ui" => true,
+      "show_in_menu" => true,
+      "show_in_nav_menus" => true,
+      "query_var" => true,
+      "rewrite" => [ 'slug' => 'sessao', 'with_front' => true, ],
+      "show_admin_column" => false,
+      "show_in_rest" => false,
+      "rest_base" => "sessao",
+      "rest_controller_class" => "WP_REST_Terms_Controller",
+      "show_in_quick_edit" => false,
+    ];
+    register_taxonomy("sessao", ["depoimento", "evento", "curso", "apresentacao"], $args);
+
+    $args = [
+      "label" => "Faz parte de um curso?",
+      "labels" => [
+        "name" => "Faz parte de um curso?",
+        "singular_name" => "Cursos",
+      ],
+      "public" => true,
+      "publicly_queryable" => true,
+      "hierarchical" => false,
+      "show_ui" => true,
+      "show_in_menu" => true,
+      "show_in_nav_menus" => true,
+      "query_var" => true,
+      "rewrite" => [ 'slug' => 'cursos', 'with_front' => true, ],
+      "show_admin_column" => false,
+      "show_in_rest" => false,
+      "rest_base" => "cursos",
+      "rest_controller_class" => "WP_REST_Terms_Controller",
+      "show_in_quick_edit" => false,
+    ];
+    register_taxonomy( "cursos", [ "depoimento", "evento", "curso" ], $args );
   }
 
   function add_to_context( $context ) {
     $context['site'] = $this;
+    $context['specializations'] = index_loop('apresentacao', 1, -1);
     $context['top_menu']  = new Timber\Menu('nav');
     return $context;
   }

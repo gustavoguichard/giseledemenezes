@@ -1,14 +1,16 @@
 {% extends "base.twig" %} {% block content %} {% if (post.thumbnail) %} {%
-include "partial/hero.twig" with {'image': post.thumbnail.src} %} {% endif %}
+include "partial/hero.twig" with { 'image': post.thumbnail.src, 'hide_subtitle':
+true } %} {% endif %}
 <article class="flex flex-col md:flex-row flex-grow justify-center bg-gray-50">
   <section class="p-8 w-full max-w-screen-lg bg-white shadow-sm">
     {% if not (post.thumbnail) %} {% include "partial/title.twig" %} {% endif %}
     <div class="prose lg:prose-lg xl:prose-xl prose-rose pb-8">
       {{ post.content }}
     </div>
-
-    {% include "partial/read-more.twig" %} {% include "partial/post-tags.twig"
-    %}
+    {% include "loop/courses.twig" with { 'posts': courses, with_title: true }
+    %} {% include "loop/events.twig" with { 'posts': events, with_title: true }
+    %} {% include "loop/testimonials.twig" with { 'posts': testimonials,
+    with_title: true } %}
   </section>
 </article>
 {% endblock %}

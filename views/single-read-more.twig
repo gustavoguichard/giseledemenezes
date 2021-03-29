@@ -1,0 +1,11 @@
+<div class="my-6 py-2 border-t border-b">
+  <p class="font-semibold text-lg text-gray-500">Mais artigos:</p>
+  <div class="flex flex-wrap justify-between">
+    {% if post.prev %}
+      <a href="{{post.prev.link}}" class="text-rose-900 hover:underline">&larr; {{post.prev.title}}</a>
+    {% endif %}
+    {% if post.next %}
+      <a href="{{post.next.link}}" class="text-rose-900 hover:underline">{{post.next.title}} &rarr;</a>
+    {% endif %}
+  </div>
+</div>

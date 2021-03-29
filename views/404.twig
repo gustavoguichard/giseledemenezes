@@ -1,10 +1,5 @@
 {% extends "base.twig" %} {% block content %}
-<article
-  class="flex flex-grow justify-center bg-gray-50 post-type-{{
-    post.post_type
-  }}"
-  id="post-{{ post.ID }}"
->
+<article class="flex flex-col md:flex-row flex-grow justify-center bg-gray-50">
   <section
     class="flex justify-center p-8 w-full max-w-screen-lg bg-white shadow-sm"
   >
@@ -13,5 +8,6 @@
       <p>Voltar à <a href="{{ site.url }}">página inicial</a>.</p>
     </div>
   </section>
+  {% include 'sidebar.twig' %}
 </article>
 {% endblock %}
