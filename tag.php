@@ -8,6 +8,6 @@
 
 $context = Timber::context();
 $context['term'] = new Timber\Term();
-$context['posts'] = Timber::get_posts();
+$context['posts'] = new Timber\PostQuery();
 
 Timber::render( 'tag.twig', $context );
