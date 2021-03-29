@@ -4,23 +4,32 @@
     <h3
       class="text-xl font-semibold text-gray-600 border-t pt-2 pb-1 my-4 border-b"
     >
-      Especializações
-    </h3>
-    {% for specialization in specializations %}
-    <a
-      href="{{ specialization.path }}"
-      class="flex items-center mb-2 bg-white space-x-2 w-full hover:ring-2 focus:ring-2 outline-none ring-rose-800 group rounded-sm"
-    >
-      <img
-        class="rounded-l-sm"
-        src="{{ specialization.thumbnail.src('mini_thumb') }}"
-      />
-      <p
-        class="text-gray-500 font-semibold text-xs group-hover:text-rose-900 group-focus:text-rose-900"
+      <a
+        data-closed="true"
+        id="specializations-anchor"
+        class="block md:hidden"
+        href="#"
+        ><span class="icon">+</span> Especializações</a
       >
-        {{ specialization.title }}
-      </p>
-    </a>
-    {%endfor%}
+      <span class="hidden md:block" href="#">Especializações</span>
+    </h3>
+    <div id="sidebar" class="hidden md:flex flex-col">
+      {% for specialization in specializations %}
+      <a
+        href="{{ specialization.path }}"
+        class="flex items-center mb-2 bg-white space-x-2 w-full hover:ring-2 focus:ring-2 outline-none ring-rose-800 group rounded-sm"
+      >
+        <img
+          class="rounded-l-sm"
+          src="{{ specialization.thumbnail.src('mini_thumb') }}"
+        />
+        <p
+          class="text-gray-500 font-semibold text-xs group-hover:text-rose-900 group-focus:text-rose-900"
+        >
+          {{ specialization.title }}
+        </p>
+      </a>
+      {%endfor%}
+    </div>
   </div>
 </aside>
