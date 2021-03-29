@@ -1,0 +1,11 @@
+{% if top_menu %}
+	<div class="flex justify-center shadow bg-rose-900 text-white w-full px-4 shadow-xl">
+    <ul class="flex justify-center flex-wrap max-w-screen-xl space-x-2 w-full">
+    {% for item in top_menu.get_items %}
+      <li>
+        <a class="py-1 px-2 flex bg-rose-900 transition hover:bg-white hover:text-rose-900 ring-inset ring-1 ring-rose-900" href="{{item.get_link}}" title="{{item.title}}">{{item.title}}</a>
+      </li>
+    {% endfor %}
+    </ul>
+	</div>
+{% endif %}

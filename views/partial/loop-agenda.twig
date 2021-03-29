@@ -1,0 +1,25 @@
+<div class="flex flex-col border-t-4 pt-6 mb-4">
+  {% for item in posts %}
+    <div class="mb-6 border-b last:border-none pb-3">
+      <h3 class="text-lg tracking-tight text-rose-900 font-semibold">{{item.title}}</h3>
+      {# {% for term in item.terms %}
+        {{term.name}}
+      {% endfor %} #}
+      {{ item.terms( {query:{taxonomy:'sessao', orderby:'name', order: 'ASC'}} )|join(', ') }}
+      {% if item.localizacao or item.contatos or item.data %}
+        <div class="text-sm text-gray-600 tracking-wide mb-1 leading-relaxed">
+        {% if item.data %}
+            <p class="block"><span class="font-semibold">Data: </span>{{item.data}}</p>
+        {% endif %}
+          {% if item.localizacao %}
+            <p class="block"><span class="font-semibold">Local: </span>{{item.localizacao}}</p>
+          {% endif %}
+          {% if item.contatos %}
+            <p class="block"><span class="font-semibold">Contatos: </span>{{item.contatos}}</p>
+          {% endif %}
+        </div>
+      {% endif %}
+      <div class="prose prose-rose">{{item.content}}</div>
+    </div>
+  {% endfor %}
+</div>

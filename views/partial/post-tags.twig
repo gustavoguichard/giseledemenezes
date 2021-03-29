@@ -1,0 +1,5 @@
+<p class="mt-8 text-xs text-gray-700">
+  Tags: {% for tag in post.terms %}
+    <a class="inline-flex mb-1 px-2 py-1 rounded text-rose-900 bg-rose-50 border border-rose-900 hover:bg-rose-900 hover:text-white transition" href="{{ site.link }}/tag/{{ tag.slug }}">{{ tag.name }}</a>
+  {% endfor %}
+</p>

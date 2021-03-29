@@ -1,0 +1,8 @@
+<div class="mb-4">
+  <h1 class="text-3xl font-semibold tracking-tight {% if style == 'white' %}text-white{% else %}text-rose-900{% endif %}">{{ post.title }}</h1>
+  {% if not hide_subtitle %}
+    <p class="text-sm italic mt-1 {% if style == 'white' %}text-white{% else %}text-gray-700{% endif %}">
+      Escrito em <strong>{{ post.post_date|date }}</strong> por <strong>{{ post.author.name }}</strong>
+    </p>
+  {% endif %}
+</div>

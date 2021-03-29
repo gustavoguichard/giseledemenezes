@@ -1,11 +1,21 @@
+const colors = require('tailwindcss/colors')
+
 module.exports = {
-  purge: ['./templates/**/*.{twig}', './*.php'],
-  darkMode: true,
+  purge: ['./views/**/*.twig', './templates/**/*.twig', './*.php'],
+  darkMode: 'media',
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        rose: colors.rose,
+        gray: colors.warmGray,
+      },
+      fontFamily: {
+        cursive: ['Tangerine', 'cursive'],
+      },
+    },
   },
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/typography')],
 }

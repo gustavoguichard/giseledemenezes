@@ -10,3 +10,13 @@ mix
   .options({
     processCssUrls: false,
   })
+  .browserSync({
+    proxy: 'http://localhost/giseledemenezes',
+    files: [
+      './js/**/*.js',
+      './css/**/*.css',
+      './images/**/*.+(png|jpg|svg)',
+      './**/*.+(html|php)',
+      './templates/**/*.+(html|twig)',
+    ],
+  })

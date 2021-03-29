@@ -1,0 +1,11 @@
+{% extends partial ? "partial.twig" : "base.twig" %}
+
+{% block content %}
+  <article class="container post-wrapper blog content-section post-type-{{post.post_type}}" id="post-{{post.ID}}">
+    {{post.content}}
+    {% for single in posts %}
+      {{single.title}}
+    {% endfor %}
+    {% include 'partial/pagination.twig' with { pagination: posts.pagination({show_all: false, mid_size: 3, end_size: 2}) } %}
+  </article>
+{% endblock %}
