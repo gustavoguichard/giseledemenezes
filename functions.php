@@ -226,7 +226,6 @@ class StarterSite extends TimberSite {
 }
 
 function index_loop($post_type = 'post', $paged = 1, $numberposts = 10) {
-  $lang = explode('_', get_locale())[0];
   $args = array(
     'post_type' => $post_type,
     'numberposts' => $numberposts,

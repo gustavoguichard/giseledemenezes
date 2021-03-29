@@ -1,25 +1,38 @@
-{% extends "base.twig" %}
-
-{% block content %}
-  {% if (post.thumbnail) %}
-    {% include "partial/hero.twig"
-      with { 'image': post.thumbnail.src, 'hide_subtitle': true }
-    %}
-  {% endif %}
-  <article class="flex flex-grow justify-center bg-gray-50 post-type-{{ post.post_type }}" id="post-{{ post.ID }}">
-    <section class="p-8 w-full max-w-screen-lg bg-white shadow-sm">
-      {% if not (post.thumbnail) %}
-        {% include "partial/title.twig" %}
-      {% endif %}
-      <div class="prose lg:prose-lg xl:prose-xl prose-rose pb-8">{{ post.content }}</div>
-      {% if post.curso_conteudo %}
-        <h4 class="text-2xl font-semibold text-gray-600 border-t-2 pt-3 pb-2 my-4 border-b-2">Conteúdo Programático</h4>
-        <div class="prose lg:prose-lg xl:prose-xl prose-rose pb-8">{{ post.curso_conteudo }}</div>
-      {% endif %}
-      {% if post.curso_requisitos %}
-        <h4 class="text-2xl font-semibold text-gray-600 border-t-2 pt-3 pb-2 my-4 border-b-2">Requisitos</h4>
-        <div class="prose lg:prose-lg xl:prose-xl prose-rose pb-8">{{ post.curso_requisitos }}</div>
-      {% endif %}
-    </section>
-  </article>
+{% extends "base.twig" %} {% block content %} {% if (post.thumbnail) %} {%
+include "partial/hero.twig" with { 'image': post.thumbnail.src, 'hide_subtitle':
+true } %} {% endif %}
+<article
+  class="flex flex-grow justify-center bg-gray-50 post-type-{{
+    post.post_type
+  }}"
+  id="post-{{ post.ID }}"
+>
+  <section class="p-8 w-full max-w-screen-lg bg-white shadow-sm">
+    {% if not (post.thumbnail) %} {% include "partial/title.twig" %} {% endif %}
+    <div class="prose lg:prose-lg xl:prose-xl prose-rose pb-8">
+      {{ post.content }}
+    </div>
+    {% if post.curso_conteudo %}
+    <h4
+      class="text-2xl font-semibold text-gray-600 border-t-2 pt-3 pb-2 my-4 border-b-2"
+    >
+      Conteúdo Programático
+    </h4>
+    <div class="prose lg:prose-lg xl:prose-xl prose-rose pb-8">
+      {{ post.curso_conteudo }}
+    </div>
+    {% endif %} {% if post.curso_requisitos %}
+    <h4
+      class="text-2xl font-semibold text-gray-600 border-t-2 pt-3 pb-2 my-4 border-b-2"
+    >
+      Requisitos
+    </h4>
+    <div class="prose lg:prose-lg xl:prose-xl prose-rose pb-8">
+      {{ post.curso_requisitos }}
+    </div>
+    {% endif %} {% include "partial/loop-agenda.twig" with { 'posts': events,
+    with_title: true } %} {% include "partial/loop-testimonials.twig" with {
+    'posts': testimonials, with_title: true } %}
+  </section>
+</article>
 {% endblock %}

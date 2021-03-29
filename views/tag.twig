@@ -1,6 +1,9 @@
 {% extends "base.twig" %} {% block content %}
 <article class="flex flex-grow justify-center bg-gray-50">
   <section class="p-8 w-full max-w-screen-lg bg-white shadow-sm">
+    <h1 class="text-3xl font-semibold tracking-tight mb-4 text-gray-500">
+      Posts para a tag: {{ term.title }}
+    </h1>
     {% include 'partial/loop-posts.twig' %} {% include 'partial/pagination.twig'
     with { pagination: posts.pagination({show_all: false, mid_size: 3, end_size:
     1}) } %}

@@ -1,15 +1,16 @@
-{% extends "base.twig" %}
-
-{% block content %}
-  {% if (post.thumbnail) %}
-    {% include "partial/hero.twig" with {'image': post.thumbnail.src} %}
-  {% endif %}
-  <article class="flex flex-grow justify-center bg-gray-50 post-type-{{ post.post_type }}" id="post-{{ post.ID }}">
-    <section class="p-8 w-full max-w-screen-lg bg-white shadow-sm">
-      {% if not (post.thumbnail) %}
-        {% include "partial/title.twig" %}
-      {% endif %}
-      <div class="prose lg:prose-lg xl:prose-xl prose-rose pb-8">{{ post.content }}</div>
-    </section>
-  </article>
+{% extends "base.twig" %} {% block content %} {% if (post.thumbnail) %} {%
+include "partial/hero.twig" with {'image': post.thumbnail.src} %} {% endif %}
+<article
+  class="flex flex-grow justify-center bg-gray-50 post-type-{{
+    post.post_type
+  }}"
+  id="post-{{ post.ID }}"
+>
+  <section class="p-8 w-full max-w-screen-lg bg-white shadow-sm">
+    {% if not (post.thumbnail) %} {% include "partial/title.twig" %} {% endif %}
+    <div class="prose lg:prose-lg xl:prose-xl prose-rose pb-8">
+      {{ post.content }}
+    </div>
+  </section>
+</article>
 {% endblock %}

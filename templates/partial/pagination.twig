@@ -1,43 +1,34 @@
 {% if posts.pagination.pages is not empty %}
-    <nav class="pagination-block">
-        <ul class="pagination">
-
-            {# Primeira #}
-            {% if posts.pagination.pages|first and posts.pagination.pages|first.current != true %}
-              <li class="first">
-                <a class="button button-primary" href="{{ posts.pagination.pages|first.link }}">&lt;&lt;</a>
-              </li>
-            {% else %}
-              <li class="first disabled">
-                <button class="button btn-disabled" disabled>&lt;&lt;</button>
-              </li>
-            {% endif %}
-
-
-            {# Pages #}
-            {% for page in posts.pagination.pages %}
-                {% if page.link %}
-                    <li>
-                        <a class="button button-primary" href="{{ page.link }}" class="{{ page.class }}">{{ page.title }}</a>
-                    </li>
-                {% else %}
-                    <li class="current">
-                        <span class="button btn-disabled" class="{{ page.class }}">{{ page.title }}</span>
-                    </li>
-                {% endif %}
-            {% endfor %}
-
-            {# Última #}
-            {% if posts.pagination.pages|last and posts.pagination.pages|last.current != true %}
-                <li class="last">
-                    <a class="button button-primary" href="{{ posts.pagination.pages|last.link }}">&gt;&gt;</a>
-                </li>
-            {% else %}
-                <li class="last disabled">
-                    <button class="button btn-disabled" disabled>&gt;&gt;</button>
-                </li>
-            {% endif %}
-
-        </ul>
-    </nav>
+<nav class="flex space-x-1 justify-center items-center">
+  {% if posts.pagination.prev %}
+  <a
+    href="{{ posts.pagination.prev.link }}"
+    class="p-2 rounded text-center min-w-[30px] hover:bg-rose-900 hover:text-white text-xs font-semibold border {{posts.pagination.prev.link|length ? '' : 'hidden'}}"
+    >&lt;</a
+  >
+  {% endif %}
+  <ul class="flex space-x-1">
+    {% for page in posts.pagination.pages %}
+    <li class="relative text-center min-w-[30px] text-xs font-semibold">
+      {% if page.link %}
+      <a
+        class="block rounded w-full h-full p-2 hover:bg-rose-900 hover:text-white border"
+        href="{{ page.link }}"
+        class="{{ page.class }}"
+        >{{ page.title }}</a
+      >
+      {% else %}
+      <span class="block w-full h-full p-2">{{ page.title }}</span>
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+  {% if posts.pagination.next %}
+  <a
+    href="{{ posts.pagination.next.link }}"
+    class="p-2 rounded text-center min-w-[30px] hover:bg-rose-900 hover:text-white text-xs font-semibold border {{posts.pagination.next.link|length ? '' : 'hidden'}}"
+    >&gt;</a
+  >
+  {% endif %}
+</nav>
 {% endif %}
