@@ -1,17 +1,22 @@
 $(document).ready(function () {
-  const anchor = $('#specializations-anchor')
-  const toggleSidebar = (event) => {
+  const $menuBt = $('#menu-bt')
+  const $menu = $('#menu-list')
+
+  const toggleMenu = (event) => {
     event.preventDefault()
-    if (anchor.data('closed')) {
-      $('#sidebar').slideDown()
-      anchor.data('closed', false)
-      anchor.html('- Fechar as Especializações')
+    const state = $menuBt.data('state')
+    const newState = state === 'closed' ? 'open' : 'closed'
+    const $icon = $('.anchor-icon', $menuBt)
+    const $text = $('.anchor-text', $menuBt)
+    if (state === 'closed') {
+      $menu.slideDown()
+      $menuBt.data('state', 'open')
     } else {
-      $('#sidebar').slideUp()
-      anchor.data('closed', true)
-      anchor.html('+ Ver as Especializações')
+      $menu.slideUp()
+      $menuBt.data('state', 'closed')
     }
+    $text.text($menuBt.data(`${newState}-text`))
   }
 
-  anchor.on('click', toggleSidebar)
+  $menuBt.on('click', toggleMenu)
 })

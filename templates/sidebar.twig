@@ -1,23 +1,19 @@
-<aside class="md:max-w-xs shadow order-first md:order-last p-4">
+<aside
+  class="{% if not mobile %}hidden md:block{% else %}md:hidden{% endif %} md:max-w-xs md:shadow p-4"
+>
   {% include "partial/search.twig" %}
   <div class="mt-3 flex flex-col">
     <h3
       class="text-xl font-semibold text-gray-600 border-t px-2 pt-2 pb-1 my-4 border-b"
     >
-      <a
-        data-closed="true"
-        id="specializations-anchor"
-        class="block md:hidden text-rose-900 text-center"
-        href="#"
-        >+ Ver as Especializações</a
-      >
-      <span class="hidden md:block" href="#">Especializações</span>
+      Especializações
     </h3>
-    <div id="sidebar" class="hidden md:flex flex-col">
+
+    <div class="flex flex-col">
       {% for specialization in specializations %}
       <a
         href="{{ specialization.path }}"
-        class="flex items-center mb-2 bg-white space-x-2 w-full hover:ring-2 focus:ring-2 outline-none ring-rose-800 group rounded-sm"
+        class="flex items-center mb-2 border-2 border-white bg-white space-x-2 w-full hover:ring-2 focus:ring-2 outline-none ring-rose-800 group rounded-sm"
       >
         <img
           class="rounded-l-sm"
