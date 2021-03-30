@@ -2,7 +2,7 @@
 <article class="flex flex-col md:flex-row flex-grow justify-center bg-gray-50">
   <section class="p-8 w-full max-w-screen-lg bg-white shadow-sm">
     {% include 'loop/posts.twig' %} {% include 'partial/pagination.twig' with {
-    pagination: posts.pagination({show_all: false, mid_size: 3, end_size: 1}) }
+    pagination: posts.pagination({show_all: false, mid_size: 1, end_size: 1}) }
     %}
   </section>
   {% include 'sidebar.twig' %}

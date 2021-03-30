@@ -6,8 +6,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        rose: colors.rose,
-        gray: colors.warmGray,
+        rose: {
+          ...colors.rose,
+          50: '#f7f3f7',
+          600: '#be322d',
+          900: '#732322',
+        },
+        gray: {
+          ...colors.warmGray,
+          50: '#f9f8f5',
+        },
       },
       fontFamily: {
         cursive: ['Tangerine', 'cursive'],

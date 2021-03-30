@@ -6,7 +6,7 @@
       <span class="text-gray-800">{{ search_term }}</span>
     </h1>
     {% include 'loop/posts.twig' %} {% include 'partial/pagination.twig' with {
-    pagination: posts.pagination({show_all: false, mid_size: 3, end_size: 1}) }
+    pagination: posts.pagination({show_all: false, mid_size: 1, end_size: 1}) }
     %}
   </section>
   {% include 'sidebar.twig' %}
