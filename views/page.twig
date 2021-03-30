@@ -1,9 +1,11 @@
 {% extends "base.twig" %} {% block content %}
 <article class="flex flex-col md:flex-row flex-grow justify-center bg-gray-50">
-  <section class="p-8 w-full max-w-screen-lg bg-white shadow-sm">
+  <section
+    class="flex flex-col md:block p-8 w-full max-w-screen-lg bg-white shadow-sm"
+  >
     {% if post.thumbnail %}
     <img
-      class="m-2 mr-6 mb-4 float-left ring ring-rose-800"
+      class="m-2 mr-6 mb-4 md:float-left ring ring-rose-800"
       src="{{ post.thumbnail.src('med_thumb') }}"
       alt="{{ post.title }}"
     />

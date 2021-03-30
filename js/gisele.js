@@ -5,11 +5,11 @@ $(document).ready(function () {
     if (anchor.data('closed')) {
       $('#sidebar').slideDown()
       anchor.data('closed', false)
-      $('.icon', anchor).html('-')
+      anchor.html('- Fechar as Especializações')
     } else {
       $('#sidebar').slideUp()
       anchor.data('closed', true)
-      $('.icon', anchor).html('+')
+      anchor.html('+ Ver as Especializações')
     }
   }
 

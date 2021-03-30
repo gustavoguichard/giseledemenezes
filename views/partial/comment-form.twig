@@ -1,0 +1,70 @@
+<div class="flex flex-col pt-8">
+  <h3 class="text-2xl text-gray-700 mb-2">Deixar um comentário</h3>
+  <form
+    class="flex flex-col max-w-xl"
+    method="post"
+    action="{{ site.site_url~'/wp-comments-post.php' }}"
+  >
+    {% if user %}
+    <input type="hidden" name="email" value="{{ user.email }}" />
+    <input type="hidden" name="author" value="{{ user.name }}" />
+    <input type="hidden" name="url" value="{{ user.link }}" />
+    {% else %}
+    <label class="font-semibold text-gray-500"
+      >Email<br />
+      <input
+        class="border-2 w-full rounded p-2 text-lg text-gray-800 outline-none focus:border-rose-900 mt-1 mb-2"
+        required
+        name="email"
+        type="email"
+        id="email"
+      />
+    </label>
+    <label class="font-semibold text-gray-500"
+      >Name<br />
+      <input
+        class="border-2 w-full rounded p-2 text-lg text-gray-800 outline-none focus:border-rose-900 mt-1 mb-2"
+        required
+        name="author"
+        type="text"
+      />
+    </label>
+    <label class="font-semibold text-gray-500"
+      >Website<br />
+      <input
+        class="border-2 w-full rounded p-2 text-lg text-gray-800 outline-none focus:border-rose-900 mt-1 mb-2"
+        name="url"
+        type="url"
+      />
+    </label>
+    {% endif %}
+    <label class="font-semibold text-gray-500" for="comment"
+      >Seu comentário:<br />
+      <textarea
+        class="border-2 w-full rounded p-2 text-lg text-gray-800 outline-none focus:border-rose-900 mt-1 mb-2"
+        id="comment"
+        name="comment"
+        rows="3"
+      ></textarea>
+    </label>
+    <input name="comment_post_ID" value="{{ post.id }}" type="hidden" />
+    <div class="flex justify-end space-x-2">
+      <button
+        type="reset"
+        class="text-gray-600 font-semibold py-1 px-3 rounded border-2 border-transparent hover:border-gray-600"
+      >
+        Cancelar
+      </button>
+      <button
+        type="submit"
+        name="Submit"
+        class="border-2 font-semibold border-rose-900 text-rose-900 hover:text-white hover:bg-rose-900 py-1 px-3 rounded"
+      >
+        Enviar
+      </button>
+    </div>
+    <p class="text-xs text-gray-600">
+      Para evitar SPAM seu comentário passará por moderação.
+    </p>
+  </form>
+</div>

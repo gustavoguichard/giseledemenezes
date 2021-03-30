@@ -9,7 +9,8 @@ include "partial/hero.twig" with {'image_src': post.thumbnail.src} %} {% endif
     </div>
 
     {% include "partial/read-more.twig" %} {% include "partial/post-tags.twig"
-    %} {% include "partial/comments.twig" %}
+    %} {% include "loop/comments.twig" with { 'with_title': true } %} {% include
+    "partial/comment-form.twig" %}
   </section>
 </article>
 {% endblock %}

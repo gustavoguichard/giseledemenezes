@@ -1,0 +1,30 @@
+<div
+  class="flex flex-col mt-8 mb-4 {% if not with_title %}border-t-4 pt-6{% endif %}"
+>
+  {% include "loop/title.twig" with { 'title': 'Comentários' } %} {% if
+  post.get_comment_count() > 0 %} {% for comment in post.comments %}
+
+  <div class="mb-6 border-b last:border-none pb-3">
+    <div class="prose lg:prose-lg prose-rose">
+      <blockquote>
+        {{ comment.content }}
+      </blockquote>
+      <p class="text-right leading-tight text-gray-600 text-sm font-semibold">
+        {{ comment.author.name }}<br />{{ comment.date }}
+      </p>
+
+      {% if comment.children() %} {% for reply in comment.children() %}
+      <blockquote class="!border-rose-900 ml-12">
+        {{ reply.content }}
+      </blockquote>
+      <p class="text-right leading-tight text-gray-600 text-sm font-semibold">
+        {{ reply.author.name }}<br />{{ reply.date }}
+      </p>
+      {% endfor %} {% endif %}
+    </div>
+  </div>
+
+  {% endfor %} {% else %}
+  <p class="font-semibold">Ainda não há comentários...</p>
+  {% endif %}
+</div>
