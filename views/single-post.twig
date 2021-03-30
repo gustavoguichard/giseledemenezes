@@ -1,5 +1,6 @@
 {% extends "base.twig" %} {% block content %} {% if (post.thumbnail) %} {%
-include "partial/hero.twig" with {'image': post.thumbnail.src} %} {% endif %}
+include "partial/hero.twig" with {'image_src': post.thumbnail.src} %} {% endif
+%}
 <article class="flex flex-col md:flex-row flex-grow justify-center bg-gray-50">
   <section class="p-8 w-full max-w-screen-lg bg-white shadow-sm">
     {% if not (post.thumbnail) %} {% include "partial/title.twig" %} {% endif %}
@@ -8,7 +9,7 @@ include "partial/hero.twig" with {'image': post.thumbnail.src} %} {% endif %}
     </div>
 
     {% include "partial/read-more.twig" %} {% include "partial/post-tags.twig"
-    %}
+    %} {% include "partial/comments.twig" %}
   </section>
 </article>
 {% endblock %}

@@ -5,7 +5,7 @@
   {% include "loop/title.twig" with { 'title': 'Confira a agenda' } %} {% for
   item in posts %}
   <div class="mb-6 border-b last:border-none pb-3">
-    <a href="{{ item.link }}">
+    <a href="{{ item.event_link }}">
       <h3 class="text-lg tracking-tight text-rose-900 font-semibold">
         {{ item.title }}
       </h3></a

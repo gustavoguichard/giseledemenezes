@@ -1,10 +1,22 @@
-<div style="background-image: url({{ image }})" class="w-full h-[40vh] md:h-[70vh] bg-no-repeat bg-cover bg-top shadow-inner flex justify-center">
-  <div class="relative w-full flex justify-center">
-    <div class="flex flex-col justify-end px-8 pb-4 max-w-screen-lg w-full h-full relative z-10">
-      {% include "partial/title.twig"
-        with { 'style': 'white', 'hide_subtitle': hide_subtitle }
-      %}
+<div
+  style="background-image: url({{ image_src }})"
+  class="relative overflow-hidden w-full h-[40vh] md:h-[75vh] bg-no-repeat bg-cover bg-top shadow-inner flex justify-center"
+>
+  <div
+    class="absolute left-0 bottom-0 -mb-8 h-[50px] w-1/2 bg-white z-20 transform rotate-3"
+  ></div>
+  <div
+    class="absolute right-0 bottom-0 -mb-8 h-[50px] w-1/2 bg-white z-20 transform -rotate-3"
+  ></div>
+  <div class="relative w-full flex justify-center text-center">
+    <div
+      class="flex flex-col justify-end px-8 pb-10 max-w-screen-lg w-full h-full relative z-10"
+    >
+      {% include "partial/title.twig" with { 'style': 'white', 'hide_subtitle':
+      hide_subtitle } %}
     </div>
-    <div class="opacity-60 bg-gradient-to-t from-black via-transparent absolute inset-0 z-0"></div>
+    <div
+      class="opacity-60 bg-gradient-to-t from-black via-transparent absolute inset-0 z-0"
+    ></div>
   </div>
 </div>
