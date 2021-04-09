@@ -3,7 +3,7 @@ const mix = require('laravel-mix')
 mix
   .postCss('src/theme.css', 'css', [
     require('autoprefixer'),
-    require('@tailwindcss/jit'),
+    require('tailwindcss'),
     require('postcss-nested'),
     require('cssnano'),
   ])

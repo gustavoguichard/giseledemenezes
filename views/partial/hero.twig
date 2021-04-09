@@ -1,13 +1,9 @@
 <div
-  style="background-image: url({{ image_src }})"
-  class="relative overflow-hidden w-full h-[40vh] md:h-[75vh] bg-no-repeat bg-cover bg-top shadow-inner flex justify-center"
+  style="background-image: url({{
+    image_src
+  }}); clip-path: polygon(50% 100%, 100% 95%, 100% 0, 0 0, 0% 95%);"
+  class="relative overflow-hidden w-full h-[40vh] md:h-[75vh] bg-no-repeat bg-cover bg-top shadow-inner flex justify-center -mb-4 md:mb-0"
 >
-  <div
-    class="absolute left-0 bottom-0 -mb-8 h-[50px] w-1/2 bg-white z-20 transform rotate-3"
-  ></div>
-  <div
-    class="absolute right-0 bottom-0 -mb-8 h-[50px] w-1/2 bg-white z-20 transform -rotate-3"
-  ></div>
   <div class="relative w-full flex justify-center text-center">
     <div
       class="flex flex-col justify-end px-8 pb-10 max-w-screen-lg w-full h-full relative z-10"
