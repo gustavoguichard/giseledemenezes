@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  img.alignright {
+    @apply ml-2.5 mb-2.5 float-right;
+  }
+
+  img.alignleft {
+    @apply mr-2.5 mb-2.5 float-left;
+  }
+
+  img.aligncenter {
+    @apply mx-auto mb-2.5;
+  }
+}

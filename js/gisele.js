@@ -6,7 +6,6 @@ $(document).ready(function () {
     event.preventDefault()
     const state = $menuBt.data('state')
     const newState = state === 'closed' ? 'open' : 'closed'
-    const $icon = $('.anchor-icon', $menuBt)
     const $text = $('.anchor-text', $menuBt)
     if (state === 'closed') {
       $menu.slideDown()
